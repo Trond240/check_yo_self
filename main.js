@@ -45,9 +45,10 @@ makeTaskList.addEventListener('click', showTaskCard);
 // set up function -- parameter of each item in array
 // input array items
 // set up loop
-// output of each loop cycle will be item on list 
+// output of each loop cycle will be item on list
 // output array items as a list
 
+//instantiate toDoList object
 function showTaskCard() {
   console.log('test');
   cards.innerHTML += `<section class='urgent-card'>
