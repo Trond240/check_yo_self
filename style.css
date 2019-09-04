@@ -1,14 +1,162 @@
 * {
   font-family: 'Open Sans', sans-serif;
-  border: 1px solid red;
+  /* border: 1px red solid; */
 }
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .full-page {
   display: flex;
   border: 2px solid #4A6378;
 }
 
+#main-header {
+  align-items: flex-end;
+  background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+h1 {
+  color: #FFFFFF;
+  font-size: 3em;
+  margin-left: 10px;
+}
+
+span {
+ color: #FFC30C;
+}
+
+#search-input {
+  height: 47px;
+    width: 304px;
+}
+
+#search-button {
+  height:47px;
+  width: 47px;
+  background-image: url(search.jpg);
+  background-position:center;
+  background-size: cover;
+  background-repeat:no-repeat;
+}
+
+#search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
 aside {
   width: 33%;
+  background-color: #587A8A;
+}
+
+form {
+  border: solid #4A6378;
+  border-width: 0 0 2px 0;
+}
+
+.aside-label {
+  font-weight: bold;
+  font-size: .9em;
+  color: #C4D2D8;
+  margin: 12% 0 2% 0;
+  margin-left: 2%;
+}
+
+#aside-title-input,
+#aside-add-task-input {
+  border: 2px solid #1E1E3D;
+  border-radius: 3px;
+  margin: 0 2% auto;
+  width: 96%;
+  color: #1E1E3D;
+  font-size: 1.5em;
+  padding: .25em;
+}
+
+#aside-add-task-input {
+  border-radius: 3px 0 0 3px;
+  width: 86%;
+  margin-right: 0;
+}
+
+#aside-add-task {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#aside-add-task-button {
+  background-color: #1E1E3D;
+  border: none;
+  margin: 0;
+  margin-right: 2%;
+  border-radius: 0 3px 3px 0;
+  padding: 0;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.5em;
+}
+
+.aside-button {
+  width: 95%;
+  background-color: #1E1E3D;
+  color: #FFFFFF;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  padding: 4px;
+  margin: 3% 2%;
+  font-size: 1em;
+}
+
+#aside-clear-button {
+  margin-bottom: 10%;
+}
+
+#aside-urgent-button,
+#aside-make-button {
+  margin-top: 10%;
+}
+
+#plus-img {
+  width: 100%;
+}
+
+.aside-task {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5%;
+}
+
+#aside-task-delete-img {
+  width: 20px;
+  margin: 0;
+}
+
+.aside-task-list-item {
+  margin-left: 4px;
+  color: #FFFFFF;
+  font-size: 1.2em;
+}
+
+.aside-task-delete-button {
+  border: none;
+  padding: 0;
+  background-color: #587A8A;
+
 }
 
 main {
