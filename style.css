@@ -219,11 +219,20 @@ footer {
   height: 22px;
   width: 22px;
   margin: 0;
-  /* padding */
   border: 2px solid #C7D3D8;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
+.blank-msg {
+  font-style: italic;
+  color: #C7D3D8;
+  font-size: 2em;
+  margin: 5%;
+}
+
+.hide-msg {
+  display: none;
 }
