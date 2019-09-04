@@ -16,6 +16,45 @@
   border: 2px solid #4A6378;
 }
 
+#main-header {
+  align-items: flex-end;
+  background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+h1 {
+  color: #FFFFFF;
+  font-size: 3em;
+  margin-left: 10px;
+}
+
+span {
+ color: #FFC30C;
+}
+
+#search-input {
+  height: 47px;
+    width: 304px;
+}
+
+#search-button {
+  height:47px;
+  width: 47px;
+  background-image: url(search.jpg);
+  background-position:center;
+  background-size: cover;
+  background-repeat:no-repeat;
+}
+
+#search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
 aside {
   width: 33%;
   background-color: #587A8A;
