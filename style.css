@@ -172,9 +172,9 @@ main {
   }
 }
 
-section {
+.urgent-card {
   border: 2px solid #C7D3D8;
-  background-color: #FAFDFFa;
+  background-color: #fff;
 }
 
 .card-header {
