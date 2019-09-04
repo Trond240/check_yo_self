@@ -15,40 +15,50 @@
         <input type ='text' id = 'search-input'>
       </form>
     </header>
-    <aside>
-      <form id='aside-form'>
-        <p class='aside-label'>Task Title</p>
-        <input type='text' id='aside-title-input'>
-        <p class='aside-label'>Task Item</p>
-        <input type='text' id='aside-task-input'>
-          <button id='aside-add-task-button'>+</button>
-        <button class='aside-button'>Make Task List</button>
-        <button class='aside-button'>Clear All</button>
-      </form>
-      <button class='aside-button' id='filter-urgent-button'>Filter by Urgency</button>
-    </aside>
-    <main>
-      <section class='urgent-card'>
-        <header>
-          <h2 class='card-header'>Task Title</h2>
-            <form class='card-form'>
-              <ul>
-                <li>Don't ever play yourself.</li>
-                <li>Every chance I get, I water the plants.</li>
-                <li>Lion! Cloth talk.</li>
-              </ul>
-            </form>
-            <footer>
-              <button class='urgent-button'>
-                <img class='urgent-img'>
-                <p class='card-button-label'>URGENT</p>
-              </button>
-              <button class='delete-button'>
-                <img class='delete-img'>
-                <p class='card-button-label'>DELETE</p>
-            </footer>
-      </section>
-    </main>
+    <div class="full-page">
+      <aside>
+        <form id='aside-form'>
+          <p class='aside-label'>Task Title</p>
+          <input type='text' id='aside-title-input'>
+          <div id='aside-task-list'>
+            <div class='aside-task'>
+              <button class='aside-task-delete-button'><img id='aside-task-delete-img' src='blue-delete.png'/></button>
+              <p class='aside-task-list-item'>task example</p>
+            </div>
+          </div>
+          <p class='aside-label'>Task Item</p>
+          <div id='aside-add-task'>
+            <input type='text' id='aside-add-task-input'>
+            <button id='aside-add-task-button'><img id="plus-img" src="plus.png" /></button>
+          </div>
+          <button class='aside-button' id='aside-make-button'>Make Task List</button>
+          <button class='aside-button' id='aside-clear-button'>Clear All</button>
+        </form>
+        <button class='aside-button' id='aside-urgent-button'>Filter by Urgency</button>
+      </aside>
+      <main>
+        <section class='urgent-card'>
+          <header>
+            <h2 class='card-header'>Task Title</h2>
+              <form class='card-form'>
+                <ul>
+                  <li>Don't ever play yourself.</li>
+                  <li>Every chance I get, I water the plants.</li>
+                  <li>Lion! Cloth talk.</li>
+                </ul>
+              </form>
+              <footer>
+                <button class='urgent-button'>
+                  <img class='urgent-img'>
+                  <p class='card-button-label'>URGENT</p>
+                </button>
+                <button class='delete-button'>
+                  <img class='delete-img'>
+                  <p class='card-button-label'>DELETE</p>
+              </footer>
+        </section>
+      </main>
+    </div>
       <script type='text/javascript' src='todo-list.js'></script>
       <script type='text/javascript' src='task.js'></script>
       <script type='text/javascript' src='main.js'></script>
