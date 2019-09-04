@@ -36,7 +36,8 @@ span {
 
 #search-input {
   height: 47px;
-    width: 304px;
+  width: 304px;
+  border: 2px solid #1E1E3D;
 }
 
 #search-button {
@@ -46,6 +47,7 @@ span {
   background-position:center;
   background-size: cover;
   background-repeat:no-repeat;
+  border-radius: 3px;
 }
 
 #search-form {
@@ -53,6 +55,7 @@ span {
   justify-content: center;
   margin-bottom: 10px;
   margin-right: 10px;
+  margin-top: 10px;
 }
 
 aside {
@@ -141,7 +144,7 @@ form {
   margin: 5%;
 }
 
-#aside-task-delete-img {
+.aside-task-delete-img {
   width: 20px;
   margin: 0;
 }
@@ -150,13 +153,6 @@ form {
   margin-left: 4px;
   color: #FFFFFF;
   font-size: 1.2em;
-}
-
-.aside-task-delete-button {
-  border: none;
-  padding: 0;
-  background-color: #587A8A;
-
 }
 
 main {

@@ -1,9 +1,52 @@
+var asideTaskList = document.querySelector('#aside-task-list');
+var asideTask = document.querySelector('.aside-task');
+var asideTaskDeleteButton = document.querySelector('.aside-task-delete-button');
+var asideTaskListItem = document.querySelector('.aside-task-list-item');
+var asideAddTaskInput = document.querySelector('#aside-add-task-input');
+var asideAddTaskButton = document.querySelector('#aside-add-task-button');
 var makeTaskList = document.getElementById('aside-make-button');
 var cards = document.querySelector('.cards');
 var asideTitleInput = document.getElementById('aside-title-input');
-var asideAddTaskInput = document.querySelectorAll('.aside-task-list-item');
+var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
+var taskItemsArr = [];
+
+
+asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
+asideTaskList.addEventListener('click', deleteTaskFromAside);
+
+function clickAsideAddTaskButton() {
+  addTaskToAside();
+  pushTasks();
+}
+
+function addTaskToAside() {
+  asideTaskList.innerHTML += `
+  <div class='aside-task'>
+    <img class='aside-task-delete-img' src='blue-delete.png'/>
+    <p class='aside-task-list-item'>${asideAddTaskInput.value}</p>
+  </div>
+  `
+  event.preventDefault();
+};
+
+function pushTasks() {
+  taskItemsArr.push(asideAddTaskInput.value);
+}
+
+function deleteTaskFromAside() {
+  if (event.target.classList.contains('aside-task-delete-img')) {
+    console.log('TEST');
+    event.target.closest('.aside-task').remove();
+  }
+};
 
 makeTaskList.addEventListener('click', showTaskCard);
+
+// set up function -- parameter of each item in array
+// input array items
+// set up loop
+// output of each loop cycle will be item on list 
+// output array items as a list
 
 function showTaskCard() {
   console.log('test');
@@ -15,7 +58,7 @@ function showTaskCard() {
         <label class='card-task-container'>
           <input type='checkbox' checked='checked'>
           <span class='checkmark'></span>
-          <p class='task-on-card'>${asideAddTaskInput.innerText}</p>
+          <p class='task-on-card'>${taskItemsArr[0]}</p>
         </label>
         <label class='card-task-container'>
           <input type='checkbox' checked='checked'>
