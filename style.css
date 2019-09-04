@@ -1,0 +1,52 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid red; */
+}
+
+body {
+  font-family: 'Open sans';
+}
+
+#main-header {
+  align-items: flex-end;
+  background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+h1 {
+  color: #FFFFFF;
+  font-size: 3em;
+  margin-left: 10px;
+}
+
+span {
+ color: #FFC30C;
+}
+
+#search-input {
+  height: 47px;
+    width: 304px;
+}
+
+#search-button {
+  height:47px;
+  width: 47px;
+  background-image: url(search.jpg);
+  background-position:center;
+  background-size: cover;
+  background-repeat:no-repeat;
+}
+
+#search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-right: 10px;
+
+}
