@@ -12,26 +12,36 @@ var taskItemsArr = [];
 var cardTaskContainer = document.querySelector('.card-task-container');
 var errorMsg = document.querySelector('click', '.error-msg');
 
-
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
 asideTaskList.addEventListener('click', deleteTaskFromAside);
+asideAddTaskInput.addEventListener('input', enableAddButton);
 
 function clickAsideAddTaskButton() {
   addTaskToAside();
   pushTasks();
+  clearAndDisable();
+}
+
+function enableAddButton() {
+  if (asideAddTaskInput.value.length > 0) {
+    asideAddTaskButton.disabled = false;
+  } else {
+    asideAddTaskButton.disabled = true;
+  }
+};
+
+function clearAndDisable() {
+  asideAddTaskInput.value = '';
+  asideAddTaskButton.disabled = true;
 }
 
 function addTaskToAside() {
-  if (asideAddTaskInput.value.length > 0) {
     asideTaskList.innerHTML += `
     <div class='aside-task'>
       <img class='aside-task-delete-img' src='images/delete.svg'/>
       <p class='aside-task-list-item'>${asideAddTaskInput.value}</p>
     </div>
     `
-  } else {
-    errorMsg.classList.add('show-msg');
-  }
   event.preventDefault();
 };
 
