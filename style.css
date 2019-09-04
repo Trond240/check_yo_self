@@ -41,4 +41,34 @@ section {
 footer {
   display: flex;
   justify-content: space-between;
+  height: 50px;
+}
+
+.urgent-button-container, .card-delete-button-container, .delete-button {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.urgent-img {
+  height: 22px;
+}
+
+.card-button-label {
+  margin: 0;
+}
+
+.card-delete-button {
+  height: 22px;
+  width: 22px;
+  margin: 0;
+  /* padding */
+  border: 2px solid #C7D3D8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
