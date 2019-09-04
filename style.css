@@ -161,4 +161,62 @@ form {
 
 main {
   width: 66%;
+  background-color: #F3F6F7;
+  border-left: 2px solid #4a6378;
+  }
+}
+
+section {
+  border: 2px solid #C7D3D8;
+  background-color: #FAFDFFa;
+}
+
+.card-header {
+  color: #1F1F3D;
+  margin: 2%;
+}
+
+.card-task-container {
+  display: block;
+  margin: 2%;
+}
+
+.task-on-card {
+  margin: 2%;
+  display: inline;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.urgent-button-container, .card-delete-button-container, .delete-button {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.urgent-img {
+  height: 22px;
+}
+
+.card-button-label {
+  margin: 0;
+}
+
+.card-delete-button {
+  height: 22px;
+  width: 22px;
+  margin: 0;
+  /* padding */
+  border: 2px solid #C7D3D8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
