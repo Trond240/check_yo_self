@@ -144,7 +144,7 @@ form {
   margin: 5%;
 }
 
-#aside-task-delete-img {
+.aside-task-delete-img {
   width: 20px;
   margin: 0;
 }
@@ -153,13 +153,6 @@ form {
   margin-left: 4px;
   color: #FFFFFF;
   font-size: 1.2em;
-}
-
-.aside-task-delete-button {
-  border: none;
-  padding: 0;
-  background-color: #587A8A;
-
 }
 
 main {
