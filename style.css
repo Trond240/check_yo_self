@@ -36,7 +36,8 @@ span {
 
 #search-input {
   height: 47px;
-    width: 304px;
+  width: 304px;
+  border: 2px solid #1E1E3D;
 }
 
 #search-button {
@@ -46,6 +47,7 @@ span {
   background-position:center;
   background-size: cover;
   background-repeat:no-repeat;
+  border-radius: 3px;
 }
 
 #search-form {
