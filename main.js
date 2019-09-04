@@ -65,11 +65,12 @@ function showTasksFromArr() {
 //instantiate toDoList object
 function showTaskCard() {
   console.log('test');
+
   cards.innerHTML += `<section class='urgent-card'>
     <header>
       <h2 class='card-header'>${asideTitleInput.value}</h2>
     </header>`
-    showTasksFromArr();
+    // showTasksFromArr();
   //     <form class='card-form'>
   //       showTasksFromArr();
   //       <label class='card-task-container'>
