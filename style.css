@@ -42,7 +42,7 @@ span {
 #search-button {
   height:47px;
   width: 47px;
-  background-image: url(search.jpg);
+  background-image: url(images/search.svg);
   background-position:center;
   background-size: cover;
   background-repeat:no-repeat;
@@ -152,6 +152,16 @@ form {
   font-size: 1.2em;
 }
 
+.error-msg {
+  display: none;
+  color: #FFFFFF;
+  margin: 1% 0 0 5%;
+}
+
+.show-msg {
+  display: block;
+}
+
 main {
   width: 66%;
   background-color: #F3F6F7;
@@ -185,7 +195,7 @@ footer {
   height: 50px;
 }
 
-.urgent-button-container, .card-delete-button-container, .delete-button {
+.urgent-button-container, .card-delete-button-container {
   height: 100%;
   display: flex;
   align-items: center;
@@ -193,7 +203,8 @@ footer {
 
 }
 
-.urgent-img {
+.urgent-img,
+.delete-img {
   height: 22px;
 }
 
