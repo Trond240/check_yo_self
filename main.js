@@ -10,6 +10,7 @@ var asideTitleInput = document.getElementById('aside-title-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
 var taskItemsArr = [];
 var cardTaskContainer = document.querySelector('.card-task-container');
+var errorMsg = document.querySelector('click', '.error-msg');
 
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
@@ -21,12 +22,16 @@ function clickAsideAddTaskButton() {
 }
 
 function addTaskToAside() {
-  asideTaskList.innerHTML += `
-  <div class='aside-task'>
-    <img class='aside-task-delete-img' src='blue-delete.png'/>
-    <p class='aside-task-list-item'>${asideAddTaskInput.value}</p>
-  </div>
-  `
+  if (asideAddTaskInput.value.length > 0) {
+    asideTaskList.innerHTML += `
+    <div class='aside-task'>
+      <img class='aside-task-delete-img' src='images/delete.svg'/>
+      <p class='aside-task-list-item'>${asideAddTaskInput.value}</p>
+    </div>
+    `
+  } else {
+    errorMsg.classList.add('show-msg');
+  }
   event.preventDefault();
 };
 
