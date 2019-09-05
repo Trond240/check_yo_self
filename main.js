@@ -23,7 +23,8 @@ function clickAsideAddTaskButton() {
   addTaskToAside();
   pushTasks();
   clearAndDisable();
-  console.log(teacher);
+  var list = new Task({});
+  console.log(list);
 };
 
 function makeTaskListButton() {
