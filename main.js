@@ -31,7 +31,7 @@ function clickAsideAddTaskButton() {
 
 function makeTaskListButton() {
   hideMsg();
-  showTaskCard();
+  // showTaskCard();
   // showTasksFromArr(taskItemsArr);
 
   // createTaskObjects();
@@ -49,7 +49,10 @@ function makeToDoList() {
     taskItems.push(task.text);
   }
   var toDoList = new ToDoList({tasks: taskItems, title: asideTitleInput.value});
-  showTasksFromArr(taskItems);
+  showTaskCard(taskItems);
+  // showTasksFromArr(taskItems);
+  // inner html to show the Title toDoList.title
+
 }
 
 function clickDeleteButtonAside() {
@@ -137,13 +140,22 @@ function deleteTaskFromAside() {
 };
 
 function showTasksFromArr(taskItems) {
-  var cardTaskContainer = document.querySelector('.card-task-container');
+  // var cardTaskContainer = document.querySelector('.card-task-container');
+  // for (var i = 0; i < taskItems.length; i++) {
+  //   cardTaskContainer.innerHTML +=
+  //   // creating a loop for each task item to show in a list
+  //   `<div><input type='checkbox' checked='checked'>
+  //   <span class='checkmark'></span>
+  //   <p class='task-on-card'>${taskItems[i]}</p></div>`
+  // }
+  var cardTasks = '';
   for (var i = 0; i < taskItems.length; i++) {
-    cardTaskContainer.innerHTML +=
+    cardTasks+=
     `<div><input type='checkbox' checked='checked'>
     <span class='checkmark'></span>
     <p class='task-on-card'>${taskItems[i]}</p></div>`
   }
+  return cardTasks;
 };
 // set up function -- parameter of each item in array
 // input array items
@@ -152,13 +164,16 @@ function showTasksFromArr(taskItems) {
 // output array items as a list
 
 //instantiate toDoList object
-function showTaskCard() {
+
+function showTaskCard(taskItems) {
   console.log('test');
+  // count ++
   cards.innerHTML += `<section class='urgent-card'>
     <header>
       <h2 class='card-header'>${asideTitleInput.value}</h2>
     </header>
     <label class='card-task-container'>
+    ${showTasksFromArr(taskItems)}
     </label>
       <footer>
         <span class='urgent-button-container'>
@@ -175,5 +190,6 @@ function showTaskCard() {
         </span>
       </footer>
    </section>`
+
   event.preventDefault();
 };
