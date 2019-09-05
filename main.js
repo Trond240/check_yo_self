@@ -10,7 +10,6 @@ var asideTitleInput = document.getElementById('aside-title-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
 var taskItemsArr = [];
 var blankMsg = document.querySelector('.blank-msg');
-
 // var errorMsg = document.querySelector('click', '.error-msg');
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
@@ -19,6 +18,7 @@ makeTaskList.addEventListener('click', makeTaskListButton);
 asideAddTaskInput.addEventListener('input', enableAddButton);
 
 function clickAsideAddTaskButton() {
+  addTaskContainerToAside();
   addTaskToAside();
   pushTasks();
   clearAndDisable();
@@ -37,9 +37,9 @@ function hideMsg() {
 };
 
 function clearAsideForm() {
-  console.log('TESTETS')
+  var asideTaskContainer = document.querySelector('.aside-task-container');
   asideTitleInput.value = '';
-  asideTaskList.parentNode.removeChild(asideTaskList);
+  asideTaskContainer.parentNode.removeChild(asideTaskContainer);
 };
 
 function enableAddButton() {
@@ -55,8 +55,17 @@ function clearAndDisable() {
   asideAddTaskButton.disabled = true;
 };
 
+function addTaskContainerToAside() {
+  asideTaskList.innerHTML += `
+  <div class='aside-task-container'>
+  </div>
+  `
+  event.preventDefault();
+};
+
 function addTaskToAside() {
-    asideTaskList.innerHTML += `
+    var asideTaskContainer = document.querySelector('.aside-task-container');
+    asideTaskContainer.innerHTML += `
     <div class='aside-task'>
       <img class='aside-task-delete-img' src='images/delete.svg'/>
       <p class='aside-task-list-item'>${asideAddTaskInput.value}</p>
