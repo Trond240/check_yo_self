@@ -38,6 +38,7 @@ span {
   height: 47px;
   width: 304px;
   border: 2px solid #1E1E3D;
+  font-size: 1.3em;
 }
 
 #search-button {
@@ -166,20 +167,23 @@ form {
 }
 
 main {
-  width: 66%;
+  width: 35%;
   background-color: #F3F6F7;
   border-left: 2px solid #4a6378;
+  border: 1.5px solid #cbcac9;
+  height: fit-content;
   }
 }
 
 .urgent-card {
-  border: 2px solid #C7D3D8;
+  border: 2px solid #cbcac9;
   background-color: #fff;
 }
 
 .card-header {
   color: #1F1F3D;
   margin: 2%;
+  border-bottom: solid 1px #cbcac9;
 }
 
 .card-task-container {
@@ -195,7 +199,9 @@ main {
 footer {
   display: flex;
   justify-content: space-between;
-  height: 50px;
+  height: 58px;
+  border-top: solid 1.5px #c7d3d8;
+  padding-top: 5px;
 }
 
 .urgent-button-container, .card-delete-button-container {
@@ -206,9 +212,14 @@ footer {
 
 }
 
-.urgent-img,
 .delete-img {
+  width: 22px;
   height: 22px;
+}
+
+.urgent-img {
+  width: 43px;
+  height: 35px;
 }
 
 .card-button-label {
@@ -235,4 +246,9 @@ footer {
 
 .hide-msg {
   display: none;
+}
+
+.urgent-button,
+.card-delete-button {
+  
 }
