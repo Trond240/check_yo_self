@@ -29,7 +29,15 @@ function makeTaskListButton() {
   showTaskCard();
   showTasksFromArr(taskItemsArr);
   clearAsideForm();
+  // disableMakeTaskListBtn();
+  taskItemsArr = [];
 };
+
+// disableMakeTaskListBtn() {
+//   if (asideTitleInput.value.length > 0) {
+//     makeTaskList.disabled = false;
+//   }
+// }
 
 function hideMsg() {
   blankMsg.classList.add('hide-msg');
