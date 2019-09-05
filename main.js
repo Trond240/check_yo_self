@@ -9,16 +9,22 @@ var cards = document.querySelector('.cards');
 var asideTitleInput = document.getElementById('aside-title-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
 var taskItemsArr = [];
-var cardTaskContainer = document.querySelector('.card-task-container');
+
 var errorMsg = document.querySelector('click', '.error-msg');
 
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
 asideTaskList.addEventListener('click', deleteTaskFromAside);
+makeTaskList.addEventListener('click', makeTaskListButton);
 
 function clickAsideAddTaskButton() {
   addTaskToAside();
   pushTasks();
+}
+
+function makeTaskListButton() {
+  showTaskCard()
+  showTasksFromArr(taskItemsArr)
 }
 
 function addTaskToAside() {
@@ -46,14 +52,13 @@ function deleteTaskFromAside() {
   }
 };
 
-makeTaskList.addEventListener('click', showTaskCard);
-
-function showTasksFromArr() {
-  for (var i = 0; taskItemsArr.length; i++) {
+function showTasksFromArr(taskItems) {
+  var cardTaskContainer = document.querySelector('.card-task-container');
+  for (var i = 0; i < taskItems.length; i++) {
     cardTaskContainer.innerHTML +=
-    `<input type='checkbox' checked='checked'>
+    `<div><input type='checkbox' checked='checked'>
     <span class='checkmark'></span>
-    <p class='task-on-card'>${taskItemsArr[0]}</p>`
+    <p class='task-on-card'>${taskItems[i]}</p></div>`
   }
 }
 // set up function -- parameter of each item in array
@@ -65,39 +70,26 @@ function showTasksFromArr() {
 //instantiate toDoList object
 function showTaskCard() {
   console.log('test');
-
   cards.innerHTML += `<section class='urgent-card'>
     <header>
       <h2 class='card-header'>${asideTitleInput.value}</h2>
-    </header>`
-    // showTasksFromArr();
-  //     <form class='card-form'>
-  //       showTasksFromArr();
-  //       <label class='card-task-container'>
-  //         <input type='checkbox' checked='checked'>
-  //         <span class='checkmark'></span>
-  //         <p class='task-on-card'>Every chance I get, I water the plants.</p>
-  //       </label>
-  //       <label class='card-task-container'>
-  //         <input type='checkbox' checked='checked'>
-  //         <span class='checkmark'></span>
-  //         <p class='task-on-card'>Lion! Cloth talk.</p>
-  //       </label>
-  //     </form>
-  //     <footer>
-  //       <span class='urgent-button-container'>
-  //         <button class='urgent-button'>
-  //           <img class='urgent-img' src='images/white-lightning.jpg'>
-  //           <p class='card-button-label'>URGENT</p>
-  //         </button>
-  //       </span>
-  //       <span class='card-delete-button-container'>
-  //         <button class='delete-button' src='images.'>
-  //           <p class='card-delete-button'>X</p>
-  //           <p class='card-button-label'>DELETE</p>
-  //         </button>
-  //       </span>
-  //     </footer>
-  // </section>`
+    </header>
+    <label class='card-task-container'>
+    </label>
+      <footer>
+        <span class='urgent-button-container'>
+          <button class='urgent-button'>
+            <img class='urgent-img' src='images/white-lightning.jpg'>
+            <p class='card-button-label'>URGENT</p>
+          </button>
+        </span>
+        <span class='card-delete-button-container'>
+          <button class='delete-button' src='images.'>
+            <p class='card-delete-button'>X</p>
+            <p class='card-button-label'>DELETE</p>
+          </button>
+        </span>
+      </footer>
+   </section>`
   event.preventDefault();
 }
