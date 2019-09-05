@@ -1,15 +1,15 @@
 var asideTaskList = document.querySelector('#aside-task-list');
-var asideTask = document.querySelector('.aside-task');
+var asideTask = document.querySelectorAll('.aside-task');
 var asideTaskDeleteButton = document.querySelector('.aside-task-delete-button');
-var asideTaskListItem = document.querySelector('.aside-task-list-item');
+// var asideTaskListItem = document.querySelector('.aside-task-list-item');
 var asideAddTaskInput = document.querySelector('#aside-add-task-input');
 var asideAddTaskButton = document.querySelector('#aside-add-task-button');
 var makeTaskList = document.getElementById('aside-make-button');
 var cards = document.querySelector('.cards');
 var asideTitleInput = document.getElementById('aside-title-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
-var taskItemsArr = [];
 var blankMsg = document.querySelector('.blank-msg');
+var count = 0;
 // var errorMsg = document.querySelector('click', '.error-msg');
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
@@ -21,23 +21,50 @@ asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 function clickAsideAddTaskButton() {
   addTaskContainerToAside();
   addTaskToAside();
-  pushTasks();
+  // var taskItem = new Task({text: 'hi'});
+  // taskItem.sayHi();
+  // pushTasks();
   clearAndDisable();
-  var list = new Task({});
-  console.log(list);
+  // console.log(list);
+  // count++;
 };
 
 function makeTaskListButton() {
   hideMsg();
   showTaskCard();
-  showTasksFromArr(taskItemsArr);
+  // showTasksFromArr(taskItemsArr);
   clearAsideForm();
+  // createTaskObjects();
+  makeToDoList();
 };
+
+function makeToDoList() {
+  console.log('hi');
+  var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
+  var taskItems = [];
+  for (var i = 0; i < taskItemsArr.length; i++) {
+    var task = new Task(taskItemsArr[i].innerText);
+    taskItems.push(task.text);
+
+  }
+  var toDoList = new ToDoList(taskItems);
+  showTasksFromArr(taskItems);
+}
 
 function clickDeleteButtonAside() {
   deleteTaskFromAside()
   deleteFromArray()
 }
+
+// function createTaskObjects() {
+//   var asideTaskListItem = document.querySelectorAll('.aside-task-list-item');
+//   var taskItemsArr = [];
+//   var toDoList = new ToDoList({});
+//   for (var i = 0; i < count; i++) {
+//     toDoList.tasks.push(asideTaskListItem.innerText);
+//
+//   }
+// }
 
 function deleteFromArray() {
   var deleteIndex= taskItemsArr.indexOf();
@@ -95,9 +122,11 @@ function addTaskToAside() {
   event.preventDefault();
 };
 
-function pushTasks() {
-  taskItemsArr.push(asideAddTaskInput.value);
-};
+// function pushTasks() {
+  // var taskItem = new Task({text: 'hi'});
+
+  // taskItemsArr.push(asideAddTaskInput.value);
+// };
 
 function deleteTaskFromAside() {
   if (event.target.classList.contains('aside-task-delete-img')) {
