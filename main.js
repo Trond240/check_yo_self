@@ -9,8 +9,9 @@ var cards = document.querySelector('.cards');
 var asideTitleInput = document.getElementById('aside-title-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
 var taskItemsArr = [];
+var blankMsg = document.querySelector('.blank-msg');
 
-var errorMsg = document.querySelector('click', '.error-msg');
+// var errorMsg = document.querySelector('click', '.error-msg');
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
 asideTaskList.addEventListener('click', deleteTaskFromAside);
@@ -21,14 +22,26 @@ function clickAsideAddTaskButton() {
   addTaskToAside();
   pushTasks();
   clearAndDisable();
-}
+};
 
 function makeTaskListButton() {
-  showTaskCard()
-  showTasksFromArr(taskItemsArr)
-}
+  hideMsg();
+  showTaskCard();
+  showTasksFromArr(taskItemsArr);
+  clearAsideForm();
+};
 
-function addTaskToAside() {
+function hideMsg() {
+  blankMsg.classList.add('hide-msg');
+  event.preventDefault();
+};
+
+function clearAsideForm() {
+  console.log('TESTETS')
+  asideTitleInput.value = '';
+  asideTaskList.parentNode.removeChild(asideTaskList);
+};
+
 function enableAddButton() {
   if (asideAddTaskInput.value.length > 0) {
     asideAddTaskButton.disabled = false;
@@ -40,7 +53,7 @@ function enableAddButton() {
 function clearAndDisable() {
   asideAddTaskInput.value = '';
   asideAddTaskButton.disabled = true;
-}
+};
 
 function addTaskToAside() {
     asideTaskList.innerHTML += `
@@ -54,7 +67,7 @@ function addTaskToAside() {
 
 function pushTasks() {
   taskItemsArr.push(asideAddTaskInput.value);
-}
+};
 
 function deleteTaskFromAside() {
   if (event.target.classList.contains('aside-task-delete-img')) {
@@ -71,7 +84,7 @@ function showTasksFromArr(taskItems) {
     <span class='checkmark'></span>
     <p class='task-on-card'>${taskItems[i]}</p></div>`
   }
-}
+};
 // set up function -- parameter of each item in array
 // input array items
 // set up loop
@@ -90,17 +103,17 @@ function showTaskCard() {
       <footer>
         <span class='urgent-button-container'>
           <button class='urgent-button'>
-            <img class='urgent-img' src='images/white-lightning.jpg'>
+            <img class='urgent-img' src='images/urgent.svg'>
             <p class='card-button-label'>URGENT</p>
           </button>
         </span>
         <span class='card-delete-button-container'>
-          <button class='delete-button' src='images.'>
-            <p class='card-delete-button'>X</p>
+          <button class='delete-button'>
+            <img lass='delete-img' src='images/delete.svg' />
             <p class='card-button-label'>DELETE</p>
           </button>
         </span>
       </footer>
    </section>`
   event.preventDefault();
-}
+};
