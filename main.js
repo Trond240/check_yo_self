@@ -13,9 +13,10 @@ var blankMsg = document.querySelector('.blank-msg');
 // var errorMsg = document.querySelector('click', '.error-msg');
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
-asideTaskList.addEventListener('click', deleteTaskFromAside);
+asideTaskList.addEventListener('click', clickDeleteButtonAside);
 makeTaskList.addEventListener('click', makeTaskListButton);
 asideAddTaskInput.addEventListener('input', enableAddButton);
+asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 
 function clickAsideAddTaskButton() {
   addTaskContainerToAside();
@@ -30,16 +31,25 @@ function makeTaskListButton() {
   showTaskCard();
   showTasksFromArr(taskItemsArr);
   clearAsideForm();
-  // disableMakeTaskListBtn();
-  // taskItemsArr = [];
-  // console.log(teacher);
 };
 
-// disableMakeTaskListBtn() {
-//   if (asideTitleInput.value.length > 0) {
-//     makeTaskList.disabled = false;
-//   }
-// }
+function clickDeleteButtonAside() {
+  deleteTaskFromAside()
+  deleteFromArray()
+}
+
+function deleteFromArray() {
+  var deleteIndex= taskItemsArr.indexOf();
+  taskItemsArr.splice(deleteIndex, 1);
+}
+
+function disableMakeTaskListBtn() {
+  if (asideTitleInput.value.length > 0) {
+    makeTaskList.disabled = false;
+  } else {
+    makeTaskList.disabled = true;
+  }
+};
 
 function hideMsg() {
   blankMsg.classList.add('hide-msg');
