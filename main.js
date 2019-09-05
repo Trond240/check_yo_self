@@ -17,7 +17,23 @@ makeTaskList.addEventListener('click', makeTaskListButton);
 asideAddTaskInput.addEventListener('input', enableAddButton);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 
+function clickAsideAddTaskButton() {
+  addTaskContainerToAside();
+  addTaskToAside();
+  clearAndDisable();
+};
 
+function makeTaskListButton() {
+  hideMsg();
+  // createTaskObjects();
+  makeToDoList();
+  clearAsideForm();
+};
+
+function clickDeleteButtonAside() {
+  deleteTaskFromAside()
+  deleteFromArray()
+};
 
 function addTaskContainerToAside() {
   asideTaskList.innerHTML += `
@@ -49,24 +65,13 @@ function clearAsideForm() {
   asideTaskContainer.parentNode.removeChild(asideTaskContainer);
 };
 
-function clickAsideAddTaskButton() {
-  addTaskContainerToAside();
-  addTaskToAside();
-  clearAndDisable();
-};
+// function deleteFromArray() {
+//   var deleteIndex= taskItemsArr.indexOf();
+//   taskItemsArr.splice(deleteIndex, 1);
+// }
 
-function clickDeleteButtonAside() {
-  deleteTaskFromAside()
-  deleteFromArray()
-}
-
-function deleteFromArray() {
-  var deleteIndex= taskItemsArr.indexOf();
-  taskItemsArr.splice(deleteIndex, 1);
-}
 function deleteTaskFromAside() {
   if (event.target.classList.contains('aside-task-delete-img')) {
-    console.log('TEST');
     event.target.closest('.aside-task').remove();
   }
 };
@@ -92,18 +97,8 @@ function hideMsg() {
   event.preventDefault();
 };
 
-function makeTaskListButton() {
-  hideMsg();
-
-  // createTaskObjects();
-  makeToDoList();
-  clearAsideForm();
-};
-
 function makeToDoList() {
-  console.log('hi');
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
-  console.log(taskItemsArr);
   var taskItems = [];
   for (var i = 0; i < taskItemsArr.length; i++) {
     var task = new Task({text: taskItemsArr[i].innerText});
@@ -116,7 +111,6 @@ function makeToDoList() {
 }
 
 function showTaskCard(taskItems) {
-  console.log('test');
   cards.innerHTML += `<section class='urgent-card'>
     <header>
       <h2 class='card-header'>${asideTitleInput.value}</h2>
@@ -139,9 +133,9 @@ function showTaskCard(taskItems) {
         </span>
       </footer>
    </section>`
-
   event.preventDefault();
 };
+
 function showTasksFromArr(taskItems) {
   // var cardTaskContainer = document.querySelector('.card-task-container');
   // for (var i = 0; i < taskItems.length; i++) {
