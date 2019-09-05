@@ -22,6 +22,7 @@ function clickAsideAddTaskButton() {
   addTaskToAside();
   pushTasks();
   clearAndDisable();
+  console.log(teacher);
 };
 
 function makeTaskListButton() {
@@ -30,7 +31,8 @@ function makeTaskListButton() {
   showTasksFromArr(taskItemsArr);
   clearAsideForm();
   // disableMakeTaskListBtn();
-  taskItemsArr = [];
+  // taskItemsArr = [];
+  // console.log(teacher);
 };
 
 // disableMakeTaskListBtn() {
