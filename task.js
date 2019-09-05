@@ -1,6 +1,6 @@
 class Task {
-  constructor(text) {
-    this.text = text;
+  constructor(obj) {
+    this.text = obj.text;
     this.checked = false;
     this.deleted = false;
 // text

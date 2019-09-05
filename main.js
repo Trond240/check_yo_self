@@ -33,21 +33,22 @@ function makeTaskListButton() {
   hideMsg();
   showTaskCard();
   // showTasksFromArr(taskItemsArr);
-  clearAsideForm();
+
   // createTaskObjects();
   makeToDoList();
+  clearAsideForm();
 };
 
 function makeToDoList() {
   console.log('hi');
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
+  console.log(taskItemsArr);
   var taskItems = [];
   for (var i = 0; i < taskItemsArr.length; i++) {
-    var task = new Task(taskItemsArr[i].innerText);
+    var task = new Task({text: taskItemsArr[i].innerText});
     taskItems.push(task.text);
-
   }
-  var toDoList = new ToDoList(taskItems);
+  var toDoList = new ToDoList({tasks: taskItems, title: asideTitleInput.value});
   showTasksFromArr(taskItems);
 }
 
