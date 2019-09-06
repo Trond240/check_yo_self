@@ -138,7 +138,7 @@ function showTaskCard() {
         </span>
         <span class='card-delete-button-container'>
           <button class='delete-button'>
-            <img lass='delete-img' src='images/delete.svg' />
+            <img class='delete-img' src='images/delete.svg'>
             <p class='card-button-label'>DELETE</p>
           </button>
         </span>
