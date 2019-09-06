@@ -28,6 +28,7 @@ function makeTaskListButton() {
   // createTaskObjects();
   makeToDoList();
   clearAsideForm();
+  disableMakeTaskListBtn()
 };
 
 function clickDeleteButtonAside() {
