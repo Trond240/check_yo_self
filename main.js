@@ -1,15 +1,14 @@
 var asideTaskList = document.querySelector('#aside-task-list');
-var asideTask = document.querySelector('.aside-task');
+var asideTask = document.querySelectorAll('.aside-task');
 var asideTaskDeleteButton = document.querySelector('.aside-task-delete-button');
-var asideTaskListItem = document.querySelector('.aside-task-list-item');
 var asideAddTaskInput = document.querySelector('#aside-add-task-input');
 var asideAddTaskButton = document.querySelector('#aside-add-task-button');
 var makeTaskList = document.getElementById('aside-make-button');
 var cards = document.querySelector('.cards');
 var asideTitleInput = document.getElementById('aside-title-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
-var taskItemsArr = [];
 var blankMsg = document.querySelector('.blank-msg');
+var count = 0;
 // var errorMsg = document.querySelector('click', '.error-msg');
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
@@ -21,58 +20,20 @@ asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 function clickAsideAddTaskButton() {
   addTaskContainerToAside();
   addTaskToAside();
-  pushTasks();
   clearAndDisable();
-  console.log(teacher);
 };
 
 function makeTaskListButton() {
   hideMsg();
-  showTaskCard();
-  showTasksFromArr(taskItemsArr);
+  // createTaskObjects();
+  makeToDoList();
   clearAsideForm();
+  disableMakeTaskListBtn()
 };
 
 function clickDeleteButtonAside() {
   deleteTaskFromAside()
   deleteFromArray()
-}
-
-function deleteFromArray() {
-  var deleteIndex= taskItemsArr.indexOf();
-  taskItemsArr.splice(deleteIndex, 1);
-}
-
-function disableMakeTaskListBtn() {
-  if (asideTitleInput.value.length > 0) {
-    makeTaskList.disabled = false;
-  } else {
-    makeTaskList.disabled = true;
-  }
-};
-
-function hideMsg() {
-  blankMsg.classList.add('hide-msg');
-  event.preventDefault();
-};
-
-function clearAsideForm() {
-  var asideTaskContainer = document.querySelector('.aside-task-container');
-  asideTitleInput.value = '';
-  asideTaskContainer.parentNode.removeChild(asideTaskContainer);
-};
-
-function enableAddButton() {
-  if (asideAddTaskInput.value.length > 0) {
-    asideAddTaskButton.disabled = false;
-  } else {
-    asideAddTaskButton.disabled = true;
-  }
-};
-
-function clearAndDisable() {
-  asideAddTaskInput.value = '';
-  asideAddTaskButton.disabled = true;
 };
 
 function addTaskContainerToAside() {
@@ -94,40 +55,69 @@ function addTaskToAside() {
   event.preventDefault();
 };
 
-function pushTasks() {
-  taskItemsArr.push(asideAddTaskInput.value);
+function clearAndDisable() {
+  asideAddTaskInput.value = '';
+  asideAddTaskButton.disabled = true;
 };
+
+function clearAsideForm() {
+  var asideTaskContainer = document.querySelector('.aside-task-container');
+  asideTitleInput.value = '';
+  asideTaskContainer.parentNode.removeChild(asideTaskContainer);
+};
+
+// function deleteFromArray() {
+//   var deleteIndex= taskItemsArr.indexOf();
+//   taskItemsArr.splice(deleteIndex, 1);
+// }
 
 function deleteTaskFromAside() {
   if (event.target.classList.contains('aside-task-delete-img')) {
-    console.log('TEST');
     event.target.closest('.aside-task').remove();
   }
 };
 
-function showTasksFromArr(taskItems) {
-  var cardTaskContainer = document.querySelector('.card-task-container');
-  for (var i = 0; i < taskItems.length; i++) {
-    cardTaskContainer.innerHTML +=
-    `<div><input type='checkbox' checked='checked'>
-    <span class='checkmark'></span>
-    <p class='task-on-card'>${taskItems[i]}</p></div>`
+function disableMakeTaskListBtn() {
+  if (asideTitleInput.value.length > 0) {
+    makeTaskList.disabled = false;
+  } else {
+    makeTaskList.disabled = true;
   }
 };
-// set up function -- parameter of each item in array
-// input array items
-// set up loop
-// output of each loop cycle will be item on list
-// output array items as a list
 
-//instantiate toDoList object
-function showTaskCard() {
-  console.log('test');
+function enableAddButton() {
+  if (asideAddTaskInput.value.length > 0) {
+    asideAddTaskButton.disabled = false;
+  } else {
+    asideAddTaskButton.disabled = true;
+  }
+};
+
+function hideMsg() {
+  blankMsg.classList.add('hide-msg');
+  event.preventDefault();
+};
+
+function makeToDoList() {
+  var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
+  var taskItems = [];
+  for (var i = 0; i < taskItemsArr.length; i++) {
+    var task = new Task({text: taskItemsArr[i].innerText});
+    taskItems.push(task.text);
+  }
+  var toDoList = new ToDoList({tasks: taskItems, title: asideTitleInput.value});
+  showTaskCard(taskItems);
+  // showTasksFromArr(taskItems);
+  // inner html to show the Title toDoList.title
+}
+
+function showTaskCard(taskItems) {
   cards.innerHTML += `<section class='urgent-card'>
     <header>
       <h2 class='card-header'>${asideTitleInput.value}</h2>
     </header>
     <label class='card-task-container'>
+    ${showTasksFromArr(taskItems)}
     </label>
       <footer>
         <span class='urgent-button-container'>
@@ -146,3 +136,29 @@ function showTaskCard() {
    </section>`
   event.preventDefault();
 };
+
+function showTasksFromArr(taskItems) {
+  // var cardTaskContainer = document.querySelector('.card-task-container');
+  // for (var i = 0; i < taskItems.length; i++) {
+  //   cardTaskContainer.innerHTML +=
+  //   // creating a loop for each task item to show in a list
+  //   `<div><input type='checkbox' checked='checked'>
+  //   <span class='checkmark'></span>
+  //   <p class='task-on-card'>${taskItems[i]}</p></div>`
+  // }
+  var cardTasks = '';
+  for (var i = 0; i < taskItems.length; i++) {
+    cardTasks+=
+    `<div><input type='checkbox' checked='checked'>
+    <span class='checkmark'></span>
+    <p class='task-on-card'>${taskItems[i]}</p></div>`
+  }
+  return cardTasks;
+};
+// set up function -- parameter of each item in array
+// input array items
+// set up loop
+// output of each loop cycle will be item on list
+// output array items as a list
+
+//instantiate toDoList object

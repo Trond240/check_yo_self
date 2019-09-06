@@ -1,11 +1,11 @@
-class toDoList {
+class ToDoList {
   constructor(obj) {
-    obj.id = id;
+    // this.id = obj.id;
 // should have a unique identifier -- can find out what time/date something happened -- timestamp?
-    obj.title = title;
-    obj.urgent = false
+    this.title = obj.title;
+    // this.urgent = false
 // pass in the unique ID when instantiating an object as an argument
-    obj.tasks = [];
+    this.tasks = obj.tasks;
   }
   saveToStorage() {
 
