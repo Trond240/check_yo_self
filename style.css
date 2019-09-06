@@ -205,6 +205,9 @@ footer {
   border-top: solid 1.5px #c7d3d8;
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin: 6px;
 }
 
 .urgent-button-container, .card-delete-button-container {
@@ -254,6 +257,8 @@ footer {
 .urgent-button {
   height: 64px;
   width: 53px;
+  border-color: #F3F6F7;
+  background-color: #F3F6F7;
 }
 
 .card-delete-button {
@@ -264,4 +269,6 @@ footer {
 .delete-button {
   width: auto;
   height: auto;
+  border-color: #F3F6F7;
+  background-color:#F3F6F7;
 }
