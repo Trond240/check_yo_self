@@ -272,3 +272,13 @@ footer {
   border-color: #F3F6F7;
   background-color:#F3F6F7;
 }
+
+.card-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.unchecked-box {
+  width: 25px;
+}

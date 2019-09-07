@@ -149,7 +149,7 @@ function showTasksFromArr(taskItems) {
   var cardTasks = '';
   for (var i = 0; i < taskItems.length; i++) {
     cardTasks+=
-    `<div><input type='checkbox' checked='checked'>
+    `<div class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
     <span class='checkmark'></span>
     <p class='task-on-card'>${taskItems[i]}</p></div>`
   }
