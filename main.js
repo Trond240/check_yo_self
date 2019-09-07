@@ -17,6 +17,7 @@ asideTaskList.addEventListener('click', clickDeleteButtonAside);
 makeTaskList.addEventListener('click', makeTaskListButton);
 asideAddTaskInput.addEventListener('input', enableAddButton);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
+document.querySelector('#aside-clear-button').addEventListener('click', clearInput);
 
 function clickAsideAddTaskButton() {
   addTaskContainerToAside();
@@ -163,3 +164,10 @@ function showTasksFromArr(taskItems, task) {
 // output array items as a list
 
 //instantiate toDoList object
+
+function clearInput() {
+  event.preventDefault();
+  document.querySelectorAll('.input').forEach(function(input) {
+  input.value = '';
+  });
+};
