@@ -9,6 +9,7 @@ var asideTitleInput = document.getElementById('aside-title-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
 var blankMsg = document.querySelector('.blank-msg');
 var count = 0;
+var toDoLists = [];
 // var errorMsg = document.querySelector('click', '.error-msg');
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
@@ -98,7 +99,6 @@ function hideMsg() {
   event.preventDefault();
 };
 // global to do list, empty array you fill
-var toDoLists = [];
 
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
@@ -109,18 +109,16 @@ function makeToDoList() {
   }
   var toDoList = new ToDoList({id: Date().now, tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
-  showTaskCard(taskItems);
-  // showTasksFromArr(taskItems);
-  // inner html to show the Title toDoList.title
+  showTaskCard(taskItems,toDoList, task);
 }
 
-function showTaskCard(taskItems) {
+function showTaskCard(taskItems, toDoList, task) {
   cards.innerHTML += `<section class='urgent-card'>
     <header>
-      <h2 class='card-header'>${asideTitleInput.value}</h2>
+      <h2 class='card-header'>${toDoList.title}</h2>
     </header>
     <label class='card-task-container'>
-    ${showTasksFromArr(taskItems)}
+    ${showTasksFromArr(taskItems, task)}
     </label>
       <footer>
         <span class='urgent-button-container'>
@@ -140,7 +138,7 @@ function showTaskCard(taskItems) {
   event.preventDefault();
 };
 
-function showTasksFromArr(taskItems) {
+function showTasksFromArr(taskItems, task) {
   // var cardTaskContainer = document.querySelector('.card-task-container');
   // for (var i = 0; i < taskItems.length; i++) {
   //   cardTaskContainer.innerHTML +=
@@ -154,7 +152,7 @@ function showTasksFromArr(taskItems) {
     cardTasks+=
     `<div class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
     <span class='checkmark'></span>
-    <p class='task-on-card'>${taskItems[i]}</p></div>`
+    <p class='task-on-card'>${task.text}</p></div>`
   }
   return cardTasks;
 };
