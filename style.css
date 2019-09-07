@@ -167,17 +167,17 @@ form {
 }
 
 main {
-  width: 35%;
+  width: 67%;
   background-color: #F3F6F7;
   border-left: 2px solid #4a6378;
   border: 1.5px solid #cbcac9;
-  height: fit-content;
-  }
 }
 
 .urgent-card {
   border: 2px solid #cbcac9;
   background-color: #fff;
+  margin: 3%;
+  width: 44%;
 }
 
 .card-header {
