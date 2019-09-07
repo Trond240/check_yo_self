@@ -97,15 +97,18 @@ function hideMsg() {
   blankMsg.classList.add('hide-msg');
   event.preventDefault();
 };
+// global to do list, empty array you fill
+var toDoLists = [];
 
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
   var taskItems = [];
   for (var i = 0; i < taskItemsArr.length; i++) {
     var task = new Task({text: taskItemsArr[i].innerText});
-    taskItems.push(task.text);
+    taskItems.push(task);
   }
-  var toDoList = new ToDoList({tasks: taskItems, title: asideTitleInput.value});
+  var toDoList = new ToDoList({id: Date().now, tasks: taskItems, title: asideTitleInput.value});
+  toDoLists.push(toDoList);
   showTaskCard(taskItems);
   // showTasksFromArr(taskItems);
   // inner html to show the Title toDoList.title
