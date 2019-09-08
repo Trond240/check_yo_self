@@ -180,9 +180,10 @@ main {
   width: 44%;
 }
 
-.urgent-card {
-  
-}
+/* .urgent-card {
+  background-color: #FFE89D;
+  border: 2px solid #FFC30C;
+} */
 
 .card-header {
   color: #1F1F3D;

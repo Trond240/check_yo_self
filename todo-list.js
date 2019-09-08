@@ -13,9 +13,19 @@ class ToDoList {
   updateToDo(){
     //should update object's title and urgency
   }
-  updateTask() {
+  updateTask(event) {
     //should update task's content and if it's been completed
-    obj.tasks.push(task.text);
+    // if container clicked,
+    if (event.target.classList.contains('unchecked-box')) {
+      event.target.src = 'images/checkbox-active.svg';
+    }
+    // var taskContainer = e.target.parentNode;
+
+      // remove unchecked box
+    // }
+    // show other image with checkmark
+
+    // font should change color and italicize
   }
 }
 
