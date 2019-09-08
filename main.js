@@ -41,7 +41,7 @@ function addEventListenerToTasks(toDoList) {
   var uncheckedItems = document.getElementById(`${toDoList.id}`).querySelectorAll('.card-list-item');
   for (i = 0; i < uncheckedItems.length; i++) {
     uncheckedItems[i].addEventListener('click', function(addEventListener) {
-      toDoList.updateTask(event);
+      toDoList.updateTask(event, );
     })
   }
 }
@@ -81,11 +81,6 @@ function clearAsideForm() {
   asideTaskContainer.parentNode.removeChild(asideTaskContainer);
 };
 
-// function deleteFromArray() {
-//   var deleteIndex= taskItemsArr.indexOf();
-//   taskItemsArr.splice(deleteIndex, 1);
-// }
-
 function deleteTaskFromAside() {
   if (event.target.classList.contains('aside-task-delete-img')) {
     event.target.closest('.aside-task').remove();
@@ -112,7 +107,6 @@ function hideMsg() {
   blankMsg.classList.add('hide-msg');
   event.preventDefault();
 };
-// global to do list, empty array you fill
 
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
@@ -121,7 +115,7 @@ function makeToDoList() {
     var task = new Task({text: taskItemsArr[i].innerText});
     taskItems.push(task);
   }
-  var toDoList = new ToDoList({id: Date().now, tasks: taskItems, title: asideTitleInput.value});
+  var toDoList = new ToDoList({id: Date.now(), tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
   showTaskCard(taskItems,toDoList);
   return toDoList;
@@ -170,13 +164,6 @@ function showTasksFromArr(taskItems) {
   }
   return cardTasks;
 };
-// set up function -- parameter of each item in array
-// input array items
-// set up loop
-// output of each loop cycle will be item on list
-// output array items as a list
-
-//instantiate toDoList object
 
 function clearInput() {
   event.preventDefault();
