@@ -173,11 +173,15 @@ main {
   border: 1.5px solid #cbcac9;
 }
 
-.urgent-card {
+.card {
   border: 2px solid #cbcac9;
   background-color: #fff;
   margin: 3%;
   width: 44%;
+}
+
+.urgent-card {
+  
 }
 
 .card-header {

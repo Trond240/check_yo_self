@@ -114,7 +114,7 @@ function makeToDoList() {
 }
 
 function showTaskCard(taskItems, toDoList) {
-  cards.innerHTML += `<section class='urgent-card'>
+  cards.innerHTML += `<section class='card urgent-card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
