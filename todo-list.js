@@ -22,6 +22,7 @@ class ToDoList {
       taskContainer.classList.add('completed-task');
       console.log(taskContainer);
     }
+
     // var taskContainer = e.target.parentNode;
 
       // remove unchecked box
