@@ -17,11 +17,10 @@
 }
 
 #main-header {
-  align-items: flex-end;
+  align-items: center;
   background-color: #1F1F3D;
   display: flex;
   justify-content: space-between;
-
 }
 
 h1 {
@@ -231,7 +230,6 @@ footer {
   display: flex;
   align-items: center;
   flex-direction: column;
-
 }
 
 .delete-img {
@@ -262,8 +260,9 @@ footer {
 .blank-msg {
   font-style: italic;
   color: #C7D3D8;
-  font-size: 2em;
+  font-size: 1em;
   margin: 5%;
+  float: left;
 }
 
 .hide-msg {
@@ -298,4 +297,84 @@ footer {
 .unchecked-box,
 .checked-box {
   width: 25px;
+}
+
+@media screen and (max-width: 800px) {
+  h1 {
+    font-size: 1.8em;
+  }
+
+  #search-input {
+    height: 30px;
+    width: 200px;
+  }
+
+  #search-button {
+    height:30px;
+    width: 30px;
+  }
+
+  .cards {
+    column-count: 1;
+  }
+
+  aside {
+    width: 40%;
+  }
+
+  main {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  #main-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  h1 {
+    font-size: 250%;
+    margin: 10px 0;
+  }
+
+  #search-form {
+    width: 75%;
+    margin: 20px 0;
+  }
+
+  #search-input {
+    height: 40px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #search-button {
+    height:40px;
+    width: 40px;
+  }
+
+  .full-page {
+    display: block;
+  }
+
+  .cards {
+    column-count: 1;
+  }
+
+  aside,
+  main {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .aside-label {
+    margin-top: 10px;
+  }
+
+  #aside-title-input {
+    margin-bottom: 25px;
+  }
 }
