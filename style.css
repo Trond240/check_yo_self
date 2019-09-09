@@ -175,9 +175,15 @@ main {
 .card {
   border: 2px solid #cbcac9;
   background-color: #F3F6F7;
-  margin: 3%;
+  margin-top: 1em;
   width: 100%;
   display: inline-block;
+}
+
+.cards {
+  column-count: 2;
+  column-gap: 1em;
+  padding: 1em;
 }
 
 /* .urgent-card {
@@ -292,9 +298,4 @@ footer {
 .unchecked-box,
 .checked-box {
   width: 25px;
-}
-
-.cards {
-  column-count: 2;
-  column-gap: 1em;
 }
