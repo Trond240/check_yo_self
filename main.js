@@ -11,6 +11,7 @@ var cards = document.querySelector('.cards');
 var count = 0;
 var makeTaskList = document.getElementById('aside-make-button');
 var toDoLists = [];
+var main = document.querySelector('.cards');
 
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
@@ -20,6 +21,7 @@ asideClearButton.addEventListener('click', clearInput);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 cards.addEventListener('click', clickCard);
 makeTaskList.addEventListener('click', makeTaskListButton);
+main.addEventListener('click', mainEventListener);
 
 function clickAsideAddTaskButton() {
   addTaskContainerToAside();
@@ -41,17 +43,40 @@ function makeTaskListButton() {
   var toDoList = makeToDoList();
   clearAsideForm();
   disableMakeTaskListBtn()
-  addEventListenerToTasks(toDoList);
+  // addEventListenerToTasks(toDoList);
 };
 
-function addEventListenerToTasks(toDoList) {
-  var uncheckedItems = document.getElementById(`${toDoList.id}`).querySelectorAll('.card-list-item');
-  for (i = 0; i < uncheckedItems.length; i++) {
-    uncheckedItems[i].addEventListener('click', function(addEventListener) {
-      toDoList.updateTask(event, );
-    })
+function mainEventListener() {
+  console.log('poop');
+  if (event.target.classList.contains('unchecked-box')) {
+    updateTask(event);
+  }
+  if (event.target.classList.contains('checked-box')) {
+    updateTask(event);
   }
 }
+
+
+
+// function addEventListenerToTasks(toDoList) {
+//   var uncheckedItems = document.getElementById(`${toDoList.id}`).querySelectorAll('.card-list-item');
+//   for (i = 0; i < uncheckedItems.length; i++) {
+//     uncheckedItems[i].addEventListener('click', function(addEventListener) {
+//       toDoList.updateTask(event);
+//     })
+//   }
+// }
+function updateTask(event) {
+  if (event.target.classList.contains('unchecked-box')) {
+    event.target.src = 'images/checkbox-active.svg';
+    event.target.classList.replace('unchecked-box', 'checked-box');
+    taskContainer.classList.add('completed-task');
+  } else if (event.target.classList.contains('checked-box')){
+    event.target.classList.replace('checked-box', 'unchecked-box');
+    event.target.src = 'images/checkbox.svg';
+    taskContainer.classList.remove('completed-task');
+  }
+};
 
 function addTaskContainerToAside() {
   asideTaskList.innerHTML += `
@@ -153,7 +178,7 @@ function showTaskCard(taskItems, toDoList) {
         </span>
       </footer>
    </section>` + cards.innerHTML;
-  event.preventDefault();
+  // event.preventDefault();
 };
 
 function showTasksFromArr(taskItems) {
