@@ -170,14 +170,20 @@ main {
   width: 67%;
   background-color: #fff;
   border-left: 2px solid #4a6378;
-  /* border: 1.5px solid #cbcac9; */
 }
 
 .card {
   border: 2px solid #cbcac9;
   background-color: #F3F6F7;
-  margin: 3%;
-  width: 44%;
+  margin-top: 1em;
+  width: 100%;
+  display: inline-block;
+}
+
+.cards {
+  column-count: 2;
+  column-gap: 1em;
+  padding: 1em;
 }
 
 /* .urgent-card {
@@ -256,8 +262,9 @@ footer {
 .blank-msg {
   font-style: italic;
   color: #C7D3D8;
-  font-size: 2em;
+  font-size: 1em;
   margin: 5%;
+  float: left;
 }
 
 .hide-msg {
@@ -289,6 +296,7 @@ footer {
   justify-content: flex-start;
 }
 
-.unchecked-box {
+.unchecked-box,
+.checked-box {
   width: 25px;
 }
