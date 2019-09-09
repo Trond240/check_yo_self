@@ -188,6 +188,10 @@ main {
 .urgent-card {
   background-color: #FFE89D;
   border: 2px solid #FFC30C;
+  display: inline-block;
+  margin-top: 1em;
+  width: 100%;
+  display: inline-block;
 }
 
 .card-header {
