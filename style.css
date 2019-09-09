@@ -168,17 +168,22 @@ form {
 
 main {
   width: 67%;
-  background-color: #F3F6F7;
+  background-color: #fff;
   border-left: 2px solid #4a6378;
-  border: 1.5px solid #cbcac9;
+  /* border: 1.5px solid #cbcac9; */
 }
 
-.urgent-card {
+.card {
   border: 2px solid #cbcac9;
-  background-color: #fff;
+  background-color: #F3F6F7;
   margin: 3%;
   width: 44%;
 }
+
+/* .urgent-card {
+  background-color: #FFE89D;
+  border: 2px solid #FFC30C;
+} */
 
 .card-header {
   color: #1F1F3D;
@@ -191,6 +196,11 @@ main {
 .card-task-container {
   display: block;
   margin: 2%;
+}
+
+.completed-task {
+  font-style: italic;
+  color: #3C6577;
 }
 
 .task-on-card {

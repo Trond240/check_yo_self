@@ -10,6 +10,7 @@ var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
 var blankMsg = document.querySelector('.blank-msg');
 var count = 0;
 var toDoLists = [];
+
 // var errorMsg = document.querySelector('click', '.error-msg');
 
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
@@ -26,12 +27,24 @@ function clickAsideAddTaskButton() {
 };
 
 function makeTaskListButton() {
+
   hideMsg();
   // createTaskObjects();
-  makeToDoList();
+  var toDoList = makeToDoList();
   clearAsideForm();
   disableMakeTaskListBtn()
+  addEventListenerToTasks(toDoList);
 };
+
+
+function addEventListenerToTasks(toDoList) {
+  var uncheckedItems = document.getElementById(`${toDoList.id}`).querySelectorAll('.card-list-item');
+  for (i = 0; i < uncheckedItems.length; i++) {
+    uncheckedItems[i].addEventListener('click', function(addEventListener) {
+      toDoList.updateTask(event, );
+    })
+  }
+}
 
 function clickDeleteButtonAside() {
   deleteTaskFromAside()
@@ -68,11 +81,6 @@ function clearAsideForm() {
   asideTaskContainer.parentNode.removeChild(asideTaskContainer);
 };
 
-// function deleteFromArray() {
-//   var deleteIndex= taskItemsArr.indexOf();
-//   taskItemsArr.splice(deleteIndex, 1);
-// }
-
 function deleteTaskFromAside() {
   if (event.target.classList.contains('aside-task-delete-img')) {
     event.target.closest('.aside-task').remove();
@@ -99,7 +107,6 @@ function hideMsg() {
   blankMsg.classList.add('hide-msg');
   event.preventDefault();
 };
-// global to do list, empty array you fill
 
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
@@ -108,13 +115,14 @@ function makeToDoList() {
     var task = new Task({text: taskItemsArr[i].innerText});
     taskItems.push(task);
   }
-  var toDoList = new ToDoList({id: Date().now, tasks: taskItems, title: asideTitleInput.value});
+  var toDoList = new ToDoList({id: Date.now(), tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
   showTaskCard(taskItems,toDoList);
+  return toDoList;
 }
 
 function showTaskCard(taskItems, toDoList) {
-  cards.innerHTML += `<section class='urgent-card'>
+  cards.innerHTML += `<section id=${toDoList.id} class='card urgent-card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
@@ -152,18 +160,10 @@ function showTasksFromArr(taskItems) {
   for (var i = 0; i < taskItems.length; i++) {
     cardTasks+=
     `<div class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
-    <span class='checkmark'></span>
     <p class='task-on-card'>${taskItems[i].text}</p></div>`
   }
   return cardTasks;
 };
-// set up function -- parameter of each item in array
-// input array items
-// set up loop
-// output of each loop cycle will be item on list
-// output array items as a list
-
-//instantiate toDoList object
 
 function clearInput() {
   event.preventDefault();

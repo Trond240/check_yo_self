@@ -3,7 +3,5 @@ class Task {
     this.text = obj.text;
     this.checked = false;
   }
-  sayHi() {
-    console.log('Hi:',this)
-  }
+  
 }

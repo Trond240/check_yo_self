@@ -13,10 +13,11 @@ class ToDoList {
   updateToDo(){
     //should update object's title and urgency
   }
-  updateTask() {
-    //should update task's content and if it's been completed
-    obj.tasks.push(task.text);
+  updateTask(event, task) {
+    var taskContainer = event.target.parentNode;
+    if (event.target.classList.contains('unchecked-box')) {
+      event.target.src = 'images/checkbox-active.svg';
+      taskContainer.classList.add('completed-task');
+    }
   }
 }
-
-var teacher = 'Amy';
