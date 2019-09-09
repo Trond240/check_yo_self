@@ -47,13 +47,7 @@ function makeTaskListButton() {
 };
 
 function mainEventListener() {
-  console.log('poop');
-  if (event.target.classList.contains('unchecked-box')) {
-    updateTask(event);
-  }
-  if (event.target.classList.contains('checked-box')) {
-    updateTask(event);
-  }
+  updateTask(event);
 }
 
 
@@ -67,6 +61,7 @@ function mainEventListener() {
 //   }
 // }
 function updateTask(event) {
+  var taskContainer = event.target.parentNode;
   if (event.target.classList.contains('unchecked-box')) {
     event.target.src = 'images/checkbox-active.svg';
     event.target.classList.replace('unchecked-box', 'checked-box');
