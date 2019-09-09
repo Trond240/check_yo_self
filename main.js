@@ -13,13 +13,11 @@ var makeTaskList = document.getElementById('aside-make-button');
 var toDoLists = [];
 var main = document.querySelector('.cards');
 
-
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
 asideAddTaskInput.addEventListener('input', enableAddButton);
 asideTaskList.addEventListener('click', clickDeleteButtonAside);
 asideClearButton.addEventListener('click', clearInput);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
-cards.addEventListener('click', clickCard);
 makeTaskList.addEventListener('click', makeTaskListButton);
 main.addEventListener('click', mainEventListener);
 
@@ -29,15 +27,12 @@ function clickAsideAddTaskButton() {
   clearAndDisable();
 };
 
-function clickCard() {
-  deleteCard();
-};
-
 function clickDeleteButtonAside() {
   deleteTaskFromAside()
 };
 
 function makeTaskListButton() {
+  console.log('WORKING');
   hideMsg();
   // createTaskObjects();
   var toDoList = makeToDoList();
@@ -48,6 +43,7 @@ function makeTaskListButton() {
 
 function mainEventListener() {
   updateTask(event);
+  deleteCard(event);
 }
 
 
