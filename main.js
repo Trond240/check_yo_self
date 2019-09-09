@@ -1,35 +1,25 @@
-var asideTaskList = document.querySelector('#aside-task-list');
-var asideTask = document.querySelectorAll('.aside-task');
 var asideTaskDeleteButton = document.querySelector('.aside-task-delete-button');
 var asideAddTaskInput = document.querySelector('#aside-add-task-input');
-var asideAddTaskButton = document.querySelector('#aside-add-task-button');
-var makeTaskList = document.getElementById('aside-make-button');
-var cards = document.querySelector('.cards');
-var asideTitleInput = document.getElementById('aside-title-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
+var asideAddTaskButton = document.querySelector('#aside-add-task-button');
+var asideClearButton = document.querySelector('#aside-clear-button');
+var asideTask = document.querySelectorAll('.aside-task');
+var asideTaskList = document.querySelector('#aside-task-list');
+var asideTitleInput = document.getElementById('aside-title-input');
 var blankMsg = document.querySelector('.blank-msg');
+var cards = document.querySelector('.cards');
 var count = 0;
+var makeTaskList = document.getElementById('aside-make-button');
 var toDoLists = [];
 
 
-cards.addEventListener('click', clickCard);
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
-asideTaskList.addEventListener('click', clickDeleteButtonAside);
-makeTaskList.addEventListener('click', makeTaskListButton);
 asideAddTaskInput.addEventListener('input', enableAddButton);
+asideTaskList.addEventListener('click', clickDeleteButtonAside);
+asideClearButton.addEventListener('click', clearInput);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
-document.querySelector('#aside-clear-button').addEventListener('click', clearInput);
-
-function clickCard() {
-  deleteCard();
-};
-
-function deleteCard() {
-  if (event.target.classList.contains('delete-img')) {
-    console.log('DELETE');
-    event.target.closest('section').remove();
-  }
-};
+cards.addEventListener('click', clickCard);
+makeTaskList.addEventListener('click', makeTaskListButton);
 
 function clickAsideAddTaskButton() {
   addTaskContainerToAside();
@@ -37,8 +27,16 @@ function clickAsideAddTaskButton() {
   clearAndDisable();
 };
 
-function makeTaskListButton() {
+function clickCard() {
+  deleteCard();
+};
 
+function clickDeleteButtonAside() {
+  deleteTaskFromAside()
+  deleteFromArray()
+};
+
+function makeTaskListButton() {
   hideMsg();
   // createTaskObjects();
   var toDoList = makeToDoList();
@@ -46,7 +44,6 @@ function makeTaskListButton() {
   disableMakeTaskListBtn()
   addEventListenerToTasks(toDoList);
 };
-
 
 function addEventListenerToTasks(toDoList) {
   var uncheckedItems = document.getElementById(`${toDoList.id}`).querySelectorAll('.card-list-item');
@@ -56,11 +53,6 @@ function addEventListenerToTasks(toDoList) {
     })
   }
 }
-
-function clickDeleteButtonAside() {
-  deleteTaskFromAside()
-  deleteFromArray()
-};
 
 function addTaskContainerToAside() {
   asideTaskList.innerHTML += `
@@ -90,6 +82,13 @@ function clearAsideForm() {
   var asideTaskContainer = document.querySelector('.aside-task-container');
   asideTitleInput.value = '';
   asideTaskContainer.parentNode.removeChild(asideTaskContainer);
+};
+
+function deleteCard() {
+  if (event.target.classList.contains('delete-img')) {
+    console.log('DELETE');
+    event.target.closest('section').remove();
+  }
 };
 
 function deleteTaskFromAside() {
