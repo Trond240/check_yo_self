@@ -257,8 +257,8 @@ footer {
 .urgent-button {
   height: 64px;
   width: 53px;
-  border-color: #F3F6F7;
-  background-color: #F3F6F7;
+  border-color: #fff;
+  background-color: #fff;
 }
 
 .card-delete-button {
@@ -269,8 +269,8 @@ footer {
 .delete-button {
   width: auto;
   height: auto;
-  border-color: #F3F6F7;
-  background-color:#F3F6F7;
+  border-color: #fff;
+  background-color:#fff;
 }
 
 .card-list-item {
