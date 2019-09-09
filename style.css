@@ -295,6 +295,6 @@ footer {
 }
 
 .cards {
-  column-count: 3;
-  column-gap: .5em;
+  column-count: 2;
+  column-gap: 1em;
 }

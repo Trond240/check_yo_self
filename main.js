@@ -131,7 +131,7 @@ function makeToDoList() {
 }
 
 function showTaskCard(taskItems, toDoList) {
-  cards.innerHTML += `<section id=${toDoList.id} class='card urgent-card'>
+  cards.innerHTML = `<section id=${toDoList.id} class='card urgent-card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
@@ -152,7 +152,7 @@ function showTaskCard(taskItems, toDoList) {
           </button>
         </span>
       </footer>
-   </section>`
+   </section>` + cards.innerHTML;
   event.preventDefault();
 };
 
