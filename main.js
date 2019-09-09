@@ -110,16 +110,16 @@ function makeToDoList() {
   }
   var toDoList = new ToDoList({id: Date().now, tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
-  showTaskCard(taskItems,toDoList, task);
+  showTaskCard(taskItems,toDoList);
 }
 
-function showTaskCard(taskItems, toDoList, task) {
+function showTaskCard(taskItems, toDoList) {
   cards.innerHTML += `<section class='urgent-card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
     <label class='card-task-container'>
-    ${showTasksFromArr(taskItems, task)}
+    ${showTasksFromArr(taskItems)}
     </label>
       <footer>
         <span class='urgent-button-container'>
@@ -139,7 +139,7 @@ function showTaskCard(taskItems, toDoList, task) {
   event.preventDefault();
 };
 
-function showTasksFromArr(taskItems, task) {
+function showTasksFromArr(taskItems) {
   // var cardTaskContainer = document.querySelector('.card-task-container');
   // for (var i = 0; i < taskItems.length; i++) {
   //   cardTaskContainer.innerHTML +=
@@ -153,7 +153,7 @@ function showTasksFromArr(taskItems, task) {
     cardTasks+=
     `<div class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
     <span class='checkmark'></span>
-    <p class='task-on-card'>${task.text}</p></div>`
+    <p class='task-on-card'>${taskItems[i].text}</p></div>`
   }
   return cardTasks;
 };
