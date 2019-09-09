@@ -11,14 +11,25 @@ var blankMsg = document.querySelector('.blank-msg');
 var count = 0;
 var toDoLists = [];
 
-// var errorMsg = document.querySelector('click', '.error-msg');
 
+cards.addEventListener('click', clickCard);
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
 asideTaskList.addEventListener('click', clickDeleteButtonAside);
 makeTaskList.addEventListener('click', makeTaskListButton);
 asideAddTaskInput.addEventListener('input', enableAddButton);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 document.querySelector('#aside-clear-button').addEventListener('click', clearInput);
+
+function clickCard() {
+  deleteCard();
+};
+
+function deleteCard() {
+  if (event.target.classList.contains('delete-img')) {
+    console.log('DELETE');
+    event.target.closest('section').remove();
+  }
+};
 
 function clickAsideAddTaskButton() {
   addTaskContainerToAside();
