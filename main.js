@@ -28,7 +28,7 @@ function clickAsideAddTaskButton() {
 };
 
 function clickCard() {
-  // deleteCard();
+  deleteCard();
 };
 
 function clickDeleteButtonAside() {
@@ -83,22 +83,12 @@ function clearAsideForm() {
   asideTaskContainer.parentNode.removeChild(asideTaskContainer);
 };
 
-// function deleteCard() {
-//   if (event.target.classList.contains('delete-img')) {
-//     task.checkChecked();
-//   }
-// };
+function deleteCard() {
+  if (event.target.classList.contains('delete-img')) {
+    event.target.closest('section').remove();
+  }
+};
 
-// function checkChecked() {
-//  for (var i = 0; i < task) {
-//
-//  }
-//   if () {
-//     event.target.closest('section').remove();
-//   } else {
-//     // error
-//   }
-// };
 
 function deleteTaskFromAside() {
   if (event.target.classList.contains('aside-task-delete-img')) {

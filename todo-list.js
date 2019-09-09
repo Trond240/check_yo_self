@@ -26,10 +26,4 @@ class ToDoList {
     }
   }
 
-  // checkChecked() {
-  //   for (var i = 0; i < ) {
-  //
-  //   }
-  // }
-
 }
