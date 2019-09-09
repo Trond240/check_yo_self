@@ -28,12 +28,11 @@ function clickAsideAddTaskButton() {
 };
 
 function clickCard() {
-  deleteCard();
+  // deleteCard();
 };
 
 function clickDeleteButtonAside() {
   deleteTaskFromAside()
-  deleteFromArray()
 };
 
 function makeTaskListButton() {
@@ -84,12 +83,22 @@ function clearAsideForm() {
   asideTaskContainer.parentNode.removeChild(asideTaskContainer);
 };
 
-function deleteCard() {
-  if (event.target.classList.contains('delete-img')) {
-    console.log('DELETE');
-    event.target.closest('section').remove();
-  }
-};
+// function deleteCard() {
+//   if (event.target.classList.contains('delete-img')) {
+//     task.checkChecked();
+//   }
+// };
+
+// function checkChecked() {
+//  for (var i = 0; i < task) {
+//
+//  }
+//   if () {
+//     event.target.closest('section').remove();
+//   } else {
+//     // error
+//   }
+// };
 
 function deleteTaskFromAside() {
   if (event.target.classList.contains('aside-task-delete-img')) {

@@ -289,6 +289,7 @@ footer {
   justify-content: flex-start;
 }
 
-.unchecked-box {
+.unchecked-box,
+.checked-box {
   width: 25px;
 }
