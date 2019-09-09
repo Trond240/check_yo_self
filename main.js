@@ -13,13 +13,11 @@ var makeTaskList = document.getElementById('aside-make-button');
 var toDoLists = [];
 var main = document.querySelector('.cards');
 
-
 asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
 asideAddTaskInput.addEventListener('input', enableAddButton);
 asideTaskList.addEventListener('click', clickDeleteButtonAside);
 asideClearButton.addEventListener('click', clearInput);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
-cards.addEventListener('click', clickCard);
 makeTaskList.addEventListener('click', makeTaskListButton);
 main.addEventListener('click', mainEventListener);
 
@@ -27,10 +25,6 @@ function clickAsideAddTaskButton() {
   addTaskContainerToAside();
   addTaskToAside();
   clearAndDisable();
-};
-
-function clickCard() {
-  deleteCard();
 };
 
 function clickDeleteButtonAside() {
@@ -43,14 +37,25 @@ function makeTaskListButton() {
   var toDoList = makeToDoList();
   clearAsideForm();
   disableMakeTaskListBtn()
-  // addEventListenerToTasks(toDoList);
 };
 
 function mainEventListener() {
   updateTask(event);
-}
+  deleteCard(event);
+  makeUrgent(event);
+};
 
-
+function makeUrgent(event) {
+  if(event.target.classList.contains('urgent-img')) {
+    event.target.closest('section').classList.replace('card', 'urgent-card');
+    event.target.classList.replace('urgent-img', 'urgent-active-img');
+    event.target.src = "images/urgent-active.svg";
+  } else if (event.target.classList.contains('urgent-active-img')) {
+    event.target.closest('section').classList.replace('urgent-card', 'card');
+    event.target.classList.replace('urgent-active-img', 'urgent-img');
+    event.target.src = "images/urgent.svg";
+  }
+};
 
 // function addEventListenerToTasks(toDoList) {
 //   var uncheckedItems = document.getElementById(`${toDoList.id}`).querySelectorAll('.card-list-item');
@@ -151,7 +156,7 @@ function makeToDoList() {
 }
 
 function showTaskCard(taskItems, toDoList) {
-  cards.innerHTML = `<section id=${toDoList.id} class='card urgent-card'>
+  cards.innerHTML = `<section id=${toDoList.id} class='card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
