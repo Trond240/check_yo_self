@@ -262,8 +262,9 @@ footer {
 .blank-msg {
   font-style: italic;
   color: #C7D3D8;
-  font-size: 2em;
+  font-size: 1em;
   margin: 5%;
+  float: left;
 }
 
 .hide-msg {
