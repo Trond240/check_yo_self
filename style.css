@@ -203,6 +203,11 @@ main {
   margin: 2%;
 }
 
+.unchecked-box,
+.checked-box {
+  width: 25px;
+}
+
 .completed-task {
   font-style: italic;
   color: #3C6577;
