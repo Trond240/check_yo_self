@@ -1,30 +1,45 @@
 var asideTaskDeleteButton = document.querySelector('.aside-task-delete-button');
 var asideAddTaskInput = document.querySelector('#aside-add-task-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
-var asideAddTaskButton = document.querySelector('#aside-add-task-button');
-var asideClearButton = document.querySelector('#aside-clear-button');
+var asideAddTaskButton = document.querySelector('.aside-add-task-button');
+var asideClearButton = document.querySelector('.aside-clear-button');
 var asideTask = document.querySelectorAll('.aside-task');
 var asideTaskList = document.querySelector('#aside-task-list');
 var asideTitleInput = document.getElementById('aside-title-input');
 var blankMsg = document.querySelector('.blank-msg');
 var cards = document.querySelector('.cards');
 var count = 0;
-var makeTaskList = document.getElementById('aside-make-button');
+var makeTaskList = document.querySelector('.aside-make-button');
 var toDoLists = [];
 var main = document.querySelector('.cards');
+var aside = document.querySelector('aside');
 
-asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
-asideAddTaskInput.addEventListener('input', enableAddButton);
+// asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
+// asideAddTaskInput.addEventListener('input', enableAddButton);
 asideTaskList.addEventListener('click', clickDeleteButtonAside);
 asideClearButton.addEventListener('click', clearInput);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 makeTaskList.addEventListener('click', makeTaskListButton);
 main.addEventListener('click', mainEventListener);
+aside.addEventListener('click', asideEventListener);
 
-function clickAsideAddTaskButton() {
-  addTaskContainerToAside();
-  addTaskToAside();
-  clearAndDisable();
+function asideEventListener(event) {
+  if (asideAddTaskInput.value.length > 0) {
+    clickAsideAddTaskButton(event);
+  }
+  event.preventDefault();
+}
+
+
+
+function clickAsideAddTaskButton(event) {
+  console.log('hi hi hi');
+  if (event.target.classList.contains('plus-img')) {
+    console.log('bye bye bye');
+    addTaskContainerToAside();
+    addTaskToAside();
+    clearAndDisable();
+  }
 };
 
 function clickDeleteButtonAside() {

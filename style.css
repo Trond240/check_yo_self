@@ -98,7 +98,7 @@ form {
   justify-content: flex-start;
 }
 
-#aside-add-task-button {
+.aside-add-task-button {
   background-color: #1E1E3D;
   border: none;
   margin: 0;
@@ -124,16 +124,16 @@ form {
   font-size: 1em;
 }
 
-#aside-clear-button {
+.aside-clear-button {
   margin-bottom: 10%;
 }
 
-#aside-urgent-button,
-#aside-make-button {
+.aside-urgent-button,
+.aside-make-button {
   margin-top: 10%;
 }
 
-#plus-img {
+.plus-img {
   width: 100%;
 }
 
