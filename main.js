@@ -15,9 +15,7 @@ var main = document.querySelector('.cards');
 var aside = document.querySelector('aside');
 var asideMegaContainer = document.querySelector('.aside-mega-container');
 
-asideClearButton.addEventListener('click', clearInput);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
-makeTaskList.addEventListener('click', makeTaskListButton);
 main.addEventListener('click', mainEventListener);
 aside.addEventListener('click', asideEventListener);
 
@@ -27,6 +25,7 @@ function asideEventListener(event) {
   }
   deleteTaskFromAside(event);
   clearInput(event);
+  clickAsideMakeButton();
   event.preventDefault();
 }
 
@@ -36,7 +35,6 @@ function clickAsideAddTaskButton(event) {
     addTaskToAside();
     clearAndDisable();
   }
-
 };
 
 function clearInput(event) {
@@ -56,12 +54,14 @@ function deleteTaskFromAside(event) {
   }
 };
 
-function makeTaskListButton() {
-  hideMsg();
-  // createTaskObjects();
-  var toDoList = makeToDoList();
-  clearAsideForm();
-  disableMakeTaskListBtn()
+function clickAsideMakeButton() {
+  if (event.target.classList.contains('aside-make-button')) {
+    hideMsg();
+    var toDoList = makeToDoList();
+    clearAsideForm();
+    disableMakeTaskListBtn()
+    // createTaskObjects();
+  }
 };
 
 function mainEventListener() {
@@ -138,9 +138,6 @@ function deleteCard() {
     event.target.closest('section').remove();
   }
 };
-
-
-
 
 function disableMakeTaskListBtn() {
   if (asideTitleInput.value.length > 0) {
