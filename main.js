@@ -27,10 +27,13 @@ function addTaskContainerToAside() {
 
 function addTaskToAside() {
   var asideTaskContainer = document.querySelector('.aside-task-container');
+  // var max = 1000;
+  // var min = 1;
+  // var randomNumber =  Math.floor(Math.random() * (+max - +min)) + +min;
   asideTaskContainer.innerHTML += `
   <div class='aside-task'>
   <img class='aside-task-delete-img' src='images/delete.svg'/>
-  <p class='aside-task-list-item'>${asideAddTaskInput.value}</p>
+  <p data-id='${Date.now()}' class='aside-task-list-item'>${asideAddTaskInput.value}</p>
   </div>`;
   event.preventDefault();
 };
@@ -109,16 +112,20 @@ function hideMsg() {
   event.preventDefault();
 };
 
+// function randomNum() {
+//   return randomNumber;
+// };
+
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
   var taskItems = [];
   for (var i = 0; i < taskItemsArr.length; i++) {
-    var task = new Task({text: taskItemsArr[i].innerText});
+    var task = new Task({text: taskItemsArr[i].innerText, id: taskItemsArr[i].dataset.id});
     taskItems.push(task);
   }
   var toDoList = new ToDoList({id: Date.now(), tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
-  showTaskCard(taskItems,toDoList);
+  showTaskCard(taskItems,toDoList, task, taskItemsArr);
   return toDoList;
 };
 
@@ -140,14 +147,14 @@ function mainEventListener() {
   makeUrgent(event);
 };
 
-function showTaskCard(taskItems, toDoList) {
+function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
   cards.innerHTML = `
-  <section id=${toDoList.id} class='card'>
+  <section data-id=${toDoList.id} class='card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
     <label class='card-task-container'>
-    ${showTasksFromArr(taskItems)}
+    ${showTasksFromArr(taskItems, task, taskItemsArr)}
     </label>
       <footer>
         <span class='urgent-button-container'>
@@ -166,17 +173,27 @@ function showTaskCard(taskItems, toDoList) {
    </section>` + cards.innerHTML;
 };
 
-function showTasksFromArr(taskItems) {
+function showTasksFromArr(taskItems, task, taskItemsArr) {
   var cardTasks = '';
   for (var i = 0; i < taskItems.length; i++) {
     cardTasks += `
-    <div class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
+    <div data-id='${taskItemsArr[i].dataset.id}' class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
     <p class='task-on-card'>${taskItems[i].text}</p></div>`;
   }
   return cardTasks;
 };
 
+
 function updateTask(event) {
+  for (var i = 0; i < toDoLists.length; i++) {
+    if (parseInt(event.target.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
+      for (var j = 0; j < toDoLists[i].tasks.length; j++) {
+        if (event.target.parentNode.dataset.id === toDoLists[i].tasks[j].id) {
+          toDoLists[i].tasks[j].updateCheck();
+        }
+      }
+    }
+  }
   var taskContainer = event.target.parentNode;
   if (event.target.classList.contains('unchecked-box')) {
     event.target.src = 'images/checkbox-active.svg';
@@ -188,3 +205,22 @@ function updateTask(event) {
     taskContainer.classList.remove('completed-task');
   }
 };
+
+// function updateTask(event) {
+  // if (event.target.classList.contains('unchecked-box')) {
+  //   event.target.src = 'images/checkbox-active.svg';
+  //   event.target.classList.replace('unchecked-box', 'checked-box');
+  //   taskContainer.classList.add('completed-task');
+  // } else if (event.target.classList.contains('checked-box')){
+  //   event.target.classList.replace('checked-box', 'unchecked-box');
+  //   event.target.src = 'images/checkbox.svg';
+  //   taskContainer.classList.remove('completed-task');
+//   }
+// };
+  // event.target on the div that the taks is inside --> pull the data attribute/id todolists.tasks
+  // with loop to match id from array
+  // conditional to change checked.true/false
+
+// function updateTaskObj(event) {
+//
+// }
