@@ -30,23 +30,27 @@ span {
 }
 
 #search-input {
-  border: 2px solid #1E1E3D;
+  border: none;
+  border-radius: 0 3px 3px 0;
   font-size: 1.3em;
   height: 47px;
   width: 304px;
 }
 
 #search-button {
+  background-color: #C8D3DA;
   background-image: url(images/search.svg);
-  background-position:center;
-  background-repeat:no-repeat;
-  background-size: cover;
-  border-radius: 3px;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  background-position: center;
+  border: none;
+  border-radius: 3px 0 0 3px;
   height:47px;
   width: 47px;
 }
 
 #search-form {
+  border: none;
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -306,7 +310,7 @@ footer {
 /* MEDIA QUERIES */
 @media screen and (max-width: 800px) {
   h1 {
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
 
   #search-input {
