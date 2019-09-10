@@ -27,10 +27,13 @@ function addTaskContainerToAside() {
 
 function addTaskToAside() {
   var asideTaskContainer = document.querySelector('.aside-task-container');
+  // var max = 1000;
+  // var min = 1;
+  // var randomNumber =  Math.floor(Math.random() * (+max - +min)) + +min;
   asideTaskContainer.innerHTML += `
   <div class='aside-task'>
   <img class='aside-task-delete-img' src='images/delete.svg'/>
-  <p class='aside-task-list-item'>${asideAddTaskInput.value}</p>
+  <p data-id='${Date.now()}' class='aside-task-list-item'>${asideAddTaskInput.value}</p>
   </div>`;
   event.preventDefault();
 };
@@ -109,24 +112,20 @@ function hideMsg() {
   event.preventDefault();
 };
 
-function randomNum() {
-  var max = 1000;
-  var min = 1;
-  var randomNumber =  Math.floor(Math.random() * (+max - +min)) + +min;
-  return randomNumber;
-};
+// function randomNum() {
+//   return randomNumber;
+// };
 
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
   var taskItems = [];
   for (var i = 0; i < taskItemsArr.length; i++) {
-    var taskIDGenerator = Date.now() * randomNum();
-    var task = new Task({text: taskItemsArr[i].innerText, id: taskIDGenerator});
+    var task = new Task({text: taskItemsArr[i].innerText, id: taskItemsArr[i].dataset.id});
     taskItems.push(task);
   }
   var toDoList = new ToDoList({id: Date.now(), tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
-  showTaskCard(taskItems,toDoList, task);
+  showTaskCard(taskItems,toDoList, task, taskItemsArr);
   return toDoList;
 };
 
@@ -148,14 +147,14 @@ function mainEventListener() {
   makeUrgent(event);
 };
 
-function showTaskCard(taskItems, toDoList, task) {
+function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
   cards.innerHTML = `
   <section id=${toDoList.id} class='card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
     <label class='card-task-container'>
-    ${showTasksFromArr(taskItems, task)}
+    ${showTasksFromArr(taskItems, task, taskItemsArr)}
     </label>
       <footer>
         <span class='urgent-button-container'>
@@ -174,11 +173,11 @@ function showTaskCard(taskItems, toDoList, task) {
    </section>` + cards.innerHTML;
 };
 
-function showTasksFromArr(taskItems, task) {
+function showTasksFromArr(taskItems, task, taskItemsArr) {
   var cardTasks = '';
   for (var i = 0; i < taskItems.length; i++) {
     cardTasks += `
-    <div data-id='${task.id}' class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
+    <div data-id='${taskItemsArr[i].dataset.id}' class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
     <p class='task-on-card'>${taskItems[i].text}</p></div>`;
   }
   return cardTasks;
