@@ -109,16 +109,24 @@ function hideMsg() {
   event.preventDefault();
 };
 
+function randomNum() {
+  var max = 1000;
+  var min = 1;
+  var randomNumber =  Math.floor(Math.random() * (+max - +min)) + +min;
+  return randomNumber;
+};
+
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
   var taskItems = [];
   for (var i = 0; i < taskItemsArr.length; i++) {
-    var task = new Task({text: taskItemsArr[i].innerText});
+    var taskIDGenerator = Date.now() * randomNum();
+    var task = new Task({text: taskItemsArr[i].innerText, id: taskIDGenerator});
     taskItems.push(task);
   }
   var toDoList = new ToDoList({id: Date.now(), tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
-  showTaskCard(taskItems,toDoList);
+  showTaskCard(taskItems,toDoList, task);
   return toDoList;
 };
 
@@ -140,14 +148,14 @@ function mainEventListener() {
   makeUrgent(event);
 };
 
-function showTaskCard(taskItems, toDoList) {
+function showTaskCard(taskItems, toDoList, task) {
   cards.innerHTML = `
   <section id=${toDoList.id} class='card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
     <label class='card-task-container'>
-    ${showTasksFromArr(taskItems)}
+    ${showTasksFromArr(taskItems, task)}
     </label>
       <footer>
         <span class='urgent-button-container'>
@@ -166,11 +174,11 @@ function showTaskCard(taskItems, toDoList) {
    </section>` + cards.innerHTML;
 };
 
-function showTasksFromArr(taskItems) {
+function showTasksFromArr(taskItems, task) {
   var cardTasks = '';
   for (var i = 0; i < taskItems.length; i++) {
     cardTasks += `
-    <div class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
+    <div data-id='${task.id}' class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
     <p class='task-on-card'>${taskItems[i].text}</p></div>`;
   }
   return cardTasks;
@@ -187,4 +195,11 @@ function updateTask(event) {
     event.target.src = 'images/checkbox.svg';
     taskContainer.classList.remove('completed-task');
   }
+  // event.target on the div that the taks is inside --> pull the data attribute/id todolists.tasks
+  // with loop to match id from array
+  // conditional to change checked.true/false
 };
+
+function updateTaskObj(event) {
+
+}
