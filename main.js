@@ -27,9 +27,6 @@ function addTaskContainerToAside() {
 
 function addTaskToAside() {
   var asideTaskContainer = document.querySelector('.aside-task-container');
-  // var max = 1000;
-  // var min = 1;
-  // var randomNumber =  Math.floor(Math.random() * (+max - +min)) + +min;
   asideTaskContainer.innerHTML += `
   <div class='aside-task'>
   <img class='aside-task-delete-img' src='images/delete.svg'/>
@@ -88,7 +85,7 @@ function clickAsideMakeButton(event) {
 };
 
 function deleteCard() {
-  if (event.target.classList.contains('delete-img')) {
+  if (event.target.classList.contains('delete-button')) {
     event.target.closest('section').remove();
   }
 };
@@ -107,14 +104,29 @@ function disableMakeTaskListBtn() {
   }
 };
 
+function enableDeleteButton(event) {
+  var listId = event.target.parentNode.parentNode.parentNode.dataset.id;
+  for (var i = 0; i < toDoLists.length; i++) {
+    if (parseInt(listId) === parseInt(toDoLists[i].id)) {
+      for (var j = 0; j < toDoLists[i].tasks.length; j++) {
+        console.log("WORKING");
+        var deleteCardButton = document.querySelector('.delete-button');
+        if (toDoLists[i].tasks[j].checked === false) {
+          console.log('NOT CHECKED');
+          // deleteCardButton.disabled = true;
+        } else {
+          console.log('CHECKED');
+          // deleteCardButton.disabled = false;
+        }
+      }
+    }
+  }
+};
+
 function hideMsg() {
   blankMsg.classList.add('hide-msg');
   event.preventDefault();
 };
-
-// function randomNum() {
-//   return randomNumber;
-// };
 
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
@@ -145,6 +157,7 @@ function mainEventListener() {
   updateTask(event);
   deleteCard(event);
   makeUrgent(event);
+  enableDeleteButton(event);
 };
 
 function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
@@ -160,14 +173,13 @@ function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
         <span class='urgent-button-container'>
           <button class='urgent-button'>
             <img class='urgent-img' src='images/urgent.svg'>
-            <p class='card-button-label'>URGENT</p>
           </button>
+          <p class='card-button-label'>URGENT</p>
         </span>
         <span class='card-delete-button-container'>
           <button class='delete-button'>
-            <img class='delete-img' src='images/delete.svg'>
-            <p class='card-button-label'>DELETE</p>
           </button>
+          <p class='card-button-label'>DELETE</p>
         </span>
       </footer>
    </section>` + cards.innerHTML;
@@ -182,7 +194,6 @@ function showTasksFromArr(taskItems, task, taskItemsArr) {
   }
   return cardTasks;
 };
-
 
 function updateTask(event) {
   for (var i = 0; i < toDoLists.length; i++) {
@@ -205,22 +216,3 @@ function updateTask(event) {
     taskContainer.classList.remove('completed-task');
   }
 };
-
-// function updateTask(event) {
-  // if (event.target.classList.contains('unchecked-box')) {
-  //   event.target.src = 'images/checkbox-active.svg';
-  //   event.target.classList.replace('unchecked-box', 'checked-box');
-  //   taskContainer.classList.add('completed-task');
-  // } else if (event.target.classList.contains('checked-box')){
-  //   event.target.classList.replace('checked-box', 'unchecked-box');
-  //   event.target.src = 'images/checkbox.svg';
-  //   taskContainer.classList.remove('completed-task');
-//   }
-// };
-  // event.target on the div that the taks is inside --> pull the data attribute/id todolists.tasks
-  // with loop to match id from array
-  // conditional to change checked.true/false
-
-// function updateTaskObj(event) {
-//
-// }

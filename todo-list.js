@@ -15,8 +15,4 @@ class ToDoList {
     //should update object's title and urgency
   }
 
-  // updateTask(event) {
-  //   var taskContainer = event.target.parentNode;
-  //   }
-  //
   };
