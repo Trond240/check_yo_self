@@ -209,7 +209,12 @@ function updateTask(event) {
 // (parseInt(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id)?
 
 function updateUrgent(event){
-  // for (var i = 0; i < toDoLists.length; i++) {
+  for (var i = 0; i < toDoLists.length; i++) {
+    if (parseInt(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
+      toDoLists[i].updateToDo();
+    }
+  }
+
     // console.log(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id);
     if (event.target.classList.contains('urgent-img')) {
         event.target.closest('section').classList.replace('card', 'urgent-card');
