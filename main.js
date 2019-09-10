@@ -105,12 +105,12 @@ function disableMakeTaskListBtn() {
 };
 
 function enableDeleteButton(event) {
+  console.log(event);
   var listId = event.target.parentNode.parentNode.parentNode.dataset.id;
   var checkCount = 0;
   for (var i = 0; i < toDoLists.length; i++) {
     if (parseInt(listId) === parseInt(toDoLists[i].id)) {
       for (var j = 0; j < toDoLists[i].tasks.length; j++) {
-        var deleteCardButton = document.querySelector('.delete-button');
         if (toDoLists[i].tasks[j].checked === true) {
           checkCount++;
         } else {
