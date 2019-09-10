@@ -204,4 +204,5 @@ function clearInput() {
   document.querySelectorAll('.input').forEach(function(input) {
   input.value = '';
   });
+  document.querySelector('.aside-task-container').innerHTML = "";
 };
