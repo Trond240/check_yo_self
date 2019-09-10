@@ -129,22 +129,23 @@ function makeToDoList() {
   return toDoList;
 };
 
-function makeUrgent(event) {
-  if(event.target.classList.contains('urgent-img')) {
-    event.target.closest('section').classList.replace('card', 'urgent-card');
-    event.target.classList.replace('urgent-img', 'urgent-active-img');
-    event.target.src = 'images/urgent-active.svg';
-  } else if (event.target.classList.contains('urgent-active-img')) {
-    event.target.closest('section').classList.replace('urgent-card', 'card');
-    event.target.classList.replace('urgent-active-img', 'urgent-img');
-    event.target.src = 'images/urgent.svg';
-  }
-};
+// function makeUrgent(event) {
+//   if(event.target.classList.contains('urgent-img')) {
+//     event.target.closest('section').classList.replace('card', 'urgent-card');
+//     event.target.classList.replace('urgent-img', 'urgent-active-img');
+//     event.target.src = 'images/urgent-active.svg';
+//   } else if (event.target.classList.contains('urgent-active-img')) {
+//     event.target.closest('section').classList.replace('urgent-card', 'card');
+//     event.target.classList.replace('urgent-active-img', 'urgent-img');
+//     event.target.src = 'images/urgent.svg';
+//   }
+// };
 
 function mainEventListener() {
   updateTask(event);
   deleteCard(event);
-  makeUrgent(event);
+  // makeUrgent(event);
+  updateUrgent(event);
 };
 
 function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
@@ -206,21 +207,20 @@ function updateTask(event) {
   }
 };
 
-// function updateTask(event) {
-  // if (event.target.classList.contains('unchecked-box')) {
-  //   event.target.src = 'images/checkbox-active.svg';
-  //   event.target.classList.replace('unchecked-box', 'checked-box');
-  //   taskContainer.classList.add('completed-task');
-  // } else if (event.target.classList.contains('checked-box')){
-  //   event.target.classList.replace('checked-box', 'unchecked-box');
-  //   event.target.src = 'images/checkbox.svg';
-  //   taskContainer.classList.remove('completed-task');
-//   }
-// };
-  // event.target on the div that the taks is inside --> pull the data attribute/id todolists.tasks
-  // with loop to match id from array
-  // conditional to change checked.true/false
+function updateUrgent(event){
+  for (var i = 0; i < toDoLists.length; i++) {
+    console.log(event.target.parentNode.parentNode.parentNode.dataset.id);
+      if (parseInt(event.target.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
 
-// function updateTaskObj(event) {
-//
-// }
+      //   if(event.target.classList.contains('urgent-img')) {
+      //     event.target.closest('section').classList.replace('card', 'urgent-card');
+      //     event.target.classList.replace('urgent-img', 'urgent-active-img');
+      //     event.target.src = 'images/urgent-active.svg';
+      //   } else if (event.target.classList.contains('urgent-active-img')) {
+      //     event.target.closest('section').classList.replace('urgent-card', 'card');
+      //     event.target.classList.replace('urgent-active-img', 'urgent-img');
+      //     event.target.src = 'images/urgent.svg';
+      // }
+    }
+  }
+};
