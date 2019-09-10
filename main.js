@@ -106,19 +106,21 @@ function disableMakeTaskListBtn() {
 
 function enableDeleteButton(event) {
   var listId = event.target.parentNode.parentNode.parentNode.dataset.id;
+  var checkCount = 0;
   for (var i = 0; i < toDoLists.length; i++) {
     if (parseInt(listId) === parseInt(toDoLists[i].id)) {
       for (var j = 0; j < toDoLists[i].tasks.length; j++) {
-        console.log("WORKING");
         var deleteCardButton = document.querySelector('.delete-button');
-        if (toDoLists[i].tasks[j].checked === false) {
-          console.log('NOT CHECKED');
-          // deleteCardButton.disabled = true;
+        if (toDoLists[i].tasks[j].checked === true) {
+          checkCount++;
         } else {
-          console.log('CHECKED');
-          // deleteCardButton.disabled = false;
+          checkCount--;
         }
       }
+    }
+    if (checkCount === toDoLists[i].tasks.length) {
+      var buttonPath = event.target.parentElement.parentElement.nextElementSibling.children[1].children[0];
+      buttonPath.disabled = false;
     }
   }
 };
@@ -169,19 +171,19 @@ function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
     <label class='card-task-container'>
     ${showTasksFromArr(taskItems, task, taskItemsArr)}
     </label>
-      <footer>
-        <span class='urgent-button-container'>
-          <button class='urgent-button'>
-            <img class='urgent-img' src='images/urgent.svg'>
-          </button>
-          <p class='card-button-label'>URGENT</p>
-        </span>
-        <span class='card-delete-button-container'>
-          <button class='delete-button'>
-          </button>
-          <p class='card-button-label'>DELETE</p>
-        </span>
-      </footer>
+    <footer>
+      <span class='urgent-button-container'>
+        <button class='urgent-button'>
+          <img class='urgent-img' src='images/urgent.svg'>
+        </button>
+        <p class='card-button-label'>URGENT</p>
+      </span>
+      <span class='card-delete-button-container'>
+        <button class='delete-button' disabled>
+        </button>
+        <p class='card-button-label'>DELETE</p>
+      </span>
+    </footer>
    </section>` + cards.innerHTML;
 };
 
