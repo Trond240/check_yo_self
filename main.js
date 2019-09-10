@@ -149,7 +149,7 @@ function mainEventListener() {
 
 function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
   cards.innerHTML = `
-  <section id=${toDoList.id} class='card'>
+  <section data-id=${toDoList.id} class='card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
@@ -183,22 +183,37 @@ function showTasksFromArr(taskItems, task, taskItemsArr) {
   return cardTasks;
 };
 
+
 function updateTask(event) {
-  var taskContainer = event.target.parentNode;
-  if (event.target.classList.contains('unchecked-box')) {
-    event.target.src = 'images/checkbox-active.svg';
-    event.target.classList.replace('unchecked-box', 'checked-box');
-    taskContainer.classList.add('completed-task');
-  } else if (event.target.classList.contains('checked-box')){
-    event.target.classList.replace('checked-box', 'unchecked-box');
-    event.target.src = 'images/checkbox.svg';
-    taskContainer.classList.remove('completed-task');
+  for (var i = 0; i < toDoLists.length; i++) {
+    console.log(event.target.parentNode.parentNode.parentNode.dataset.id);
+    if (parseInt(event.target.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
+      for (var j = 0; j < toDoLists[i].tasks.length; j++) {
+        if (event.target.parentNode.dataset.id === toDoLists[i].tasks[j].id) {
+          console.log('hi');
+          toDoLists[i].tasks[j].updateCheck();
+        }
+      }
+    }
   }
+};
+
+// function updateTask(event) {
+//   var taskContainer = event.target.parentNode;
+//   if (event.target.classList.contains('unchecked-box')) {
+//     event.target.src = 'images/checkbox-active.svg';
+//     event.target.classList.replace('unchecked-box', 'checked-box');
+//     taskContainer.classList.add('completed-task');
+//   } else if (event.target.classList.contains('checked-box')){
+//     event.target.classList.replace('checked-box', 'unchecked-box');
+//     event.target.src = 'images/checkbox.svg';
+//     taskContainer.classList.remove('completed-task');
+//   }
+// };
   // event.target on the div that the taks is inside --> pull the data attribute/id todolists.tasks
   // with loop to match id from array
   // conditional to change checked.true/false
-};
 
-function updateTaskObj(event) {
-
-}
+// function updateTaskObj(event) {
+//
+// }
