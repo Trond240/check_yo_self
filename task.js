@@ -3,7 +3,9 @@ class Task {
     this.text = obj.text;
     this.checked = false;
   }
+
   updateTask() {
     this.checked = !this.checked;
   }
-}
+
+};
