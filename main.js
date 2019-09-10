@@ -209,8 +209,8 @@ function updateTask(event) {
 
 function updateUrgent(event){
   for (var i = 0; i < toDoLists.length; i++) {
-    console.log(event.target.parentNode.parentNode.parentNode.dataset.id);
-      if (parseInt(event.target.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
+    console.log(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id);
+      if (parseInt(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
 
       //   if(event.target.classList.contains('urgent-img')) {
       //     event.target.closest('section').classList.replace('card', 'urgent-card');
