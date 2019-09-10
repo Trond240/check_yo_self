@@ -5,8 +5,7 @@ class Task {
     this.id = obj.id;
   }
 
-  updateCheck() {
-    console.log('Kayla smells')
+  updateCheck(obj) {
     this.checked = !this.checked;
   }
 
