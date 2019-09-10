@@ -1,34 +1,59 @@
 var asideTaskDeleteButton = document.querySelector('.aside-task-delete-button');
 var asideAddTaskInput = document.querySelector('#aside-add-task-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
-var asideAddTaskButton = document.querySelector('#aside-add-task-button');
-var asideClearButton = document.querySelector('#aside-clear-button');
+var asideAddTaskButton = document.querySelector('.aside-add-task-button');
+var asideClearButton = document.querySelector('.aside-clear-button');
 var asideTask = document.querySelectorAll('.aside-task');
 var asideTaskList = document.querySelector('#aside-task-list');
 var asideTitleInput = document.getElementById('aside-title-input');
 var blankMsg = document.querySelector('.blank-msg');
 var cards = document.querySelector('.cards');
 var count = 0;
-var makeTaskList = document.getElementById('aside-make-button');
+var makeTaskList = document.querySelector('.aside-make-button');
 var toDoLists = [];
 var main = document.querySelector('.cards');
+var aside = document.querySelector('aside');
+var asideMegaContainer = document.querySelector('.aside-mega-container');
 
-asideAddTaskButton.addEventListener('click', clickAsideAddTaskButton);
-asideAddTaskInput.addEventListener('input', enableAddButton);
-asideTaskList.addEventListener('click', clickDeleteButtonAside);
 asideClearButton.addEventListener('click', clearInput);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 makeTaskList.addEventListener('click', makeTaskListButton);
 main.addEventListener('click', mainEventListener);
+aside.addEventListener('click', asideEventListener);
 
-function clickAsideAddTaskButton() {
-  addTaskContainerToAside();
-  addTaskToAside();
-  clearAndDisable();
+function asideEventListener(event) {
+  if (asideAddTaskInput.value.length > 0) {
+    clickAsideAddTaskButton(event);
+  }
+  deleteTaskFromAside(event);
+  clearInput(event);
+  event.preventDefault();
+}
+
+function clickAsideAddTaskButton(event) {
+  if (event.target.classList.contains('plus-img')) {
+    addTaskContainerToAside();
+    addTaskToAside();
+    clearAndDisable();
+  }
+
 };
 
-function clickDeleteButtonAside() {
-  deleteTaskFromAside()
+function clearInput(event) {
+var asideTaskContainer = document.querySelector('.aside-task-container');
+  if (event.target.classList.contains('aside-clear-button')) {
+    event.preventDefault();
+    document.querySelectorAll('.input').forEach(function(input) {
+    input.value = '';
+    });
+    asideTaskContainer.parentNode.removeChild(asideTaskContainer);
+  }
+};
+
+function deleteTaskFromAside(event) {
+  if (event.target.classList.contains('aside-task-delete-img')) {
+    event.target.closest('.aside-task').remove();
+  }
 };
 
 function makeTaskListButton() {
@@ -115,25 +140,13 @@ function deleteCard() {
 };
 
 
-function deleteTaskFromAside() {
-  if (event.target.classList.contains('aside-task-delete-img')) {
-    event.target.closest('.aside-task').remove();
-  }
-};
+
 
 function disableMakeTaskListBtn() {
   if (asideTitleInput.value.length > 0) {
     makeTaskList.disabled = false;
   } else {
     makeTaskList.disabled = true;
-  }
-};
-
-function enableAddButton() {
-  if (asideAddTaskInput.value.length > 0) {
-    asideAddTaskButton.disabled = false;
-  } else {
-    asideAddTaskButton.disabled = true;
   }
 };
 
@@ -197,11 +210,4 @@ function showTasksFromArr(taskItems) {
     <p class='task-on-card'>${taskItems[i].text}</p></div>`
   }
   return cardTasks;
-};
-
-function clearInput() {
-  event.preventDefault();
-  document.querySelectorAll('.input').forEach(function(input) {
-  input.value = '';
-  });
 };
