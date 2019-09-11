@@ -17,8 +17,8 @@ class ToDoList {
 
   }
 
-  UpdateToDo() {
-
+  updateToDo(obj) {
+    this.urgent = !this.urgent;
   }
 
   };
