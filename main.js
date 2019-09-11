@@ -34,12 +34,19 @@ function showParsedCards(parsedCards) {
 
 function instantiateStorage(parsedCards) {
   for (var i = 0; i < parsedCards.length; i++) {
-    var toDoList = new ToDoList({id: parsedCards[i].id, tasks: parsedCards[i].tasks, title: parsedCards[i].title});
-    for (var j = 0; j < parsedCards[i].tasks.length; j++) {
-      var task = new Task({text: parsedCards[i].tasks[j].text, id: parsedCards[i].tasks[j].id});
-    }
+    console.log(parsedCards[i].tasks)
+    var toDoList = new ToDoList({id: parsedCards[i].id, urgent: parsedCards[i].urgent, tasks: reinstantiateTasks(parsedCards[i].tasks), title: parsedCards[i].title});
   toDoLists.push(toDoList);
   }
+};
+
+function reinstantiateTasks(tasksArr) {
+  var array = [];
+  for (var i = 0; i < tasksArr.length; i++){
+    var task = new Task({text: tasksArr[i].text, checked: tasksArr[i].checked, id: tasksArr[i].id});
+    array.push(task);
+  }
+  return array
 };
 
 function addTaskContainerToAside() {
@@ -129,7 +136,7 @@ function disableMakeTaskListBtn() {
 };
 
 function enableDeleteButton(event) {
-  console.log(event);
+  // console.log(event);
   var listId = event.target.parentNode.parentNode.parentNode.dataset.id;
   var checkCount = 0;
   for (var i = 0; i < toDoLists.length; i++) {
@@ -229,10 +236,15 @@ function showTasksFromArr(taskItems) {
 };
 
 function updateTask(event) {
+  console.log(event);
   for (var i = 0; i < toDoLists.length; i++) {
-    if (parseInt(event.target.parentElement.parentElement.nextElementSibling.children[1].children[0].dataset.id) === parseInt(toDoLists[i].id)) {
+     console.log(234);
+    if (parseInt(event.target.parentElement.parentElement.parentElement.dataset.id) === parseInt(toDoLists[i].id)) {
+      console.log(238);
       for (var j = 0; j < toDoLists[i].tasks.length; j++) {
+        console.log(240);
         if (event.target.parentNode.dataset.id === toDoLists[i].tasks[j].id) {
+          console.log(toDoLists[i].tasks[j]);
           toDoLists[i].tasks[j].updateCheck();
         }
       }
@@ -253,6 +265,7 @@ function updateTask(event) {
 function updateUrgent(event){
   for (var i = 0; i < toDoLists.length; i++) {
     if (parseInt(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
+      console.log(261);
       toDoLists[i].updateToDo();
     }
   }
