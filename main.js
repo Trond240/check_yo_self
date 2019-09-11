@@ -21,11 +21,15 @@ window.addEventListener('load', retrieveFromStorage);
 
 function retrieveFromStorage() {
   var parsedCards = JSON.parse(localStorage.getItem('stringifiedCards'));
-  console.log(parsedCards);
-  // makeToDoList();
-  // parsed == params
-  // showTaskCard(taskItems, toDoList, task, taskItemsArr);
-}
+  if (parsedCards.length) {
+   showParsedCards(parsedCards);
+  }
+};
+function showParsedCards(parsedCards) {
+  for (var i = 0; i < parsedCards.length; i++) {
+    showTaskCard(parsedCards[i].tasks, parsedCards[i]);
+  }
+};
 
 function addTaskContainerToAside() {
   asideTaskList.innerHTML += `
@@ -176,7 +180,6 @@ function mainEventListener() {
   deleteCard(event);
   updateUrgent(event);
   enableDeleteButton(event);
-  updateUrgent(event);
 };
 
 function showTaskCard(taskItems, toDoList) {
