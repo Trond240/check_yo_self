@@ -5,14 +5,20 @@ class ToDoList {
     this.tasks = obj.tasks;
   }
 
-  saveToStorage() {
+  saveToStorage(toDoLists) {
+    console.log('start');
+    var stringifiedArr = JSON.stringify(toDoLists);
+    console.log(stringifiedArr);
+    localStorage.setItem('stringifiedCards', stringifiedArr);
+    console.log(localStorage);
   }
 
   deleteFromStorage() {
+
   }
 
-  updateToDo(){
-    //should update object's title and urgency
+  UpdateToDo() {
+
   }
 
   };

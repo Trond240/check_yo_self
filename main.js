@@ -17,6 +17,15 @@ var toDoLists = [];
 aside.addEventListener('click', asideEventListener);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 main.addEventListener('click', mainEventListener);
+window.addEventListener('load', retrieveFromStorage);
+
+function retrieveFromStorage() {
+  var parsedCards = JSON.parse(localStorage.getItem('stringifiedCards'));
+  console.log(parsedCards);
+  // makeToDoList();
+  // parsed == params
+  // showTaskCard(taskItems, toDoList, task, taskItemsArr);
+}
 
 function addTaskContainerToAside() {
   asideTaskList.innerHTML += `
@@ -78,7 +87,7 @@ function clickAsideAddTaskButton(event) {
 function clickAsideMakeButton(event) {
   if (event.target.classList.contains('aside-make-button')) {
     hideMsg();
-    var toDoList = makeToDoList();
+    makeToDoList();
     clearAsideForm();
     disableMakeTaskListBtn();
   }
@@ -139,7 +148,8 @@ function makeToDoList() {
   }
   var toDoList = new ToDoList({id: Date.now(), tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
-  showTaskCard(taskItems,toDoList, task, taskItemsArr);
+  showTaskCard(taskItems, toDoList);
+  toDoList.saveToStorage(toDoLists);
   return toDoList;
 };
 
@@ -162,14 +172,14 @@ function mainEventListener() {
   enableDeleteButton(event);
 };
 
-function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
+function showTaskCard(taskItems, toDoList) {
   cards.innerHTML = `
   <section data-id=${toDoList.id} class='card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
     <label class='card-task-container'>
-    ${showTasksFromArr(taskItems, task, taskItemsArr)}
+    ${showTasksFromArr(taskItems)}
     </label>
     <footer>
       <span class='urgent-button-container'>
@@ -187,11 +197,11 @@ function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
    </section>` + cards.innerHTML;
 };
 
-function showTasksFromArr(taskItems, task, taskItemsArr) {
+function showTasksFromArr(taskItems) {
   var cardTasks = '';
   for (var i = 0; i < taskItems.length; i++) {
     cardTasks += `
-    <div data-id='${taskItemsArr[i].dataset.id}' class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
+    <div data-id='${taskItems[i].id}' class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
     <p class='task-on-card'>${taskItems[i].text}</p></div>`;
   }
   return cardTasks;
