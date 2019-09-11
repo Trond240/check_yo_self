@@ -176,6 +176,7 @@ function mainEventListener() {
   deleteCard(event);
   updateUrgent(event);
   enableDeleteButton(event);
+  updateUrgent(event);
 };
 
 function showTaskCard(taskItems, toDoList) {
@@ -234,3 +235,20 @@ function updateTask(event) {
     taskContainer.classList.remove('completed-task');
   }
 };
+
+function updateUrgent(event){
+  for (var i = 0; i < toDoLists.length; i++) {
+    if (parseInt(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
+      toDoLists[i].updateToDo();
+    }
+  }
+    if (event.target.classList.contains('urgent-img')) {
+        event.target.closest('section').classList.replace('card', 'urgent-card');
+        event.target.classList.replace('urgent-img', 'urgent-active-img');
+        event.target.src = 'images/urgent-active.svg';
+      } else if (event.target.classList.contains('urgent-active-img')) {
+        event.target.closest('section').classList.replace('urgent-card', 'card');
+        event.target.classList.replace('urgent-active-img', 'urgent-img');
+        event.target.src = 'images/urgent.svg';
+    }
+  };
