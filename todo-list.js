@@ -6,19 +6,20 @@ class ToDoList {
     this.urgent = false;
   }
 
-  saveToStorage() {
+  saveToStorage(toDoLists) {
+    console.log('start');
+    var stringifiedArr = JSON.stringify(toDoLists);
+    console.log(stringifiedArr);
+    localStorage.setItem('stringifiedCards', stringifiedArr);
+    console.log(localStorage);
   }
 
   deleteFromStorage() {
+
   }
 
   updateToDo(obj){
     this.urgent = !this.urgent;
-    //should update object's title and urgency
   }
 
-  // updateTask(event) {
-  //   var taskContainer = event.target.parentNode;
-  //   }
-  //
   };

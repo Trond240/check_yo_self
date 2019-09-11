@@ -17,6 +17,15 @@ var toDoLists = [];
 aside.addEventListener('click', asideEventListener);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
 main.addEventListener('click', mainEventListener);
+window.addEventListener('load', retrieveFromStorage);
+
+function retrieveFromStorage() {
+  var parsedCards = JSON.parse(localStorage.getItem('stringifiedCards'));
+  console.log(parsedCards);
+  // makeToDoList();
+  // parsed == params
+  // showTaskCard(taskItems, toDoList, task, taskItemsArr);
+}
 
 function addTaskContainerToAside() {
   asideTaskList.innerHTML += `
@@ -27,9 +36,6 @@ function addTaskContainerToAside() {
 
 function addTaskToAside() {
   var asideTaskContainer = document.querySelector('.aside-task-container');
-  // var max = 1000;
-  // var min = 1;
-  // var randomNumber =  Math.floor(Math.random() * (+max - +min)) + +min;
   asideTaskContainer.innerHTML += `
   <div class='aside-task'>
   <img class='aside-task-delete-img' src='images/delete.svg'/>
@@ -81,14 +87,14 @@ function clickAsideAddTaskButton(event) {
 function clickAsideMakeButton(event) {
   if (event.target.classList.contains('aside-make-button')) {
     hideMsg();
-    var toDoList = makeToDoList();
+    makeToDoList();
     clearAsideForm();
     disableMakeTaskListBtn();
   }
 };
 
 function deleteCard() {
-  if (event.target.classList.contains('delete-img')) {
+  if (event.target.classList.contains('delete-button')) {
     event.target.closest('section').remove();
   }
 };
@@ -107,14 +113,31 @@ function disableMakeTaskListBtn() {
   }
 };
 
+function enableDeleteButton(event) {
+  console.log(event);
+  var listId = event.target.parentNode.parentNode.parentNode.dataset.id;
+  var checkCount = 0;
+  for (var i = 0; i < toDoLists.length; i++) {
+    if (parseInt(listId) === parseInt(toDoLists[i].id)) {
+      for (var j = 0; j < toDoLists[i].tasks.length; j++) {
+        if (toDoLists[i].tasks[j].checked === true) {
+          checkCount++;
+        } else {
+          checkCount--;
+        }
+      }
+    }
+    if (checkCount === toDoLists[i].tasks.length) {
+      var buttonPath = event.target.parentElement.parentElement.nextElementSibling.children[1].children[0];
+      buttonPath.disabled = false;
+    }
+  }
+};
+
 function hideMsg() {
   blankMsg.classList.add('hide-msg');
   event.preventDefault();
 };
-
-// function randomNum() {
-//   return randomNumber;
-// };
 
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
@@ -125,7 +148,8 @@ function makeToDoList() {
   }
   var toDoList = new ToDoList({id: Date.now(), tasks: taskItems, title: asideTitleInput.value});
   toDoLists.push(toDoList);
-  showTaskCard(taskItems,toDoList, task, taskItemsArr);
+  showTaskCard(taskItems, toDoList);
+  toDoList.saveToStorage(toDoLists);
   return toDoList;
 };
 
@@ -144,46 +168,45 @@ function makeToDoList() {
 function mainEventListener() {
   updateTask(event);
   deleteCard(event);
-  // makeUrgent(event);
+  makeUrgent(event);
+  enableDeleteButton(event);
   updateUrgent(event);
 };
 
-function showTaskCard(taskItems, toDoList, task, taskItemsArr) {
+function showTaskCard(taskItems, toDoList) {
   cards.innerHTML = `
   <section data-id=${toDoList.id} class='card'>
     <header>
       <h2 class='card-header'>${toDoList.title}</h2>
     </header>
     <label class='card-task-container'>
-    ${showTasksFromArr(taskItems, task, taskItemsArr)}
+    ${showTasksFromArr(taskItems)}
     </label>
-      <footer>
-        <span class='urgent-button-container'>
-          <button class='urgent-button'>
-            <img class='urgent-img' src='images/urgent.svg'>
-            <p class='card-button-label'>URGENT</p>
-          </button>
-        </span>
-        <span class='card-delete-button-container'>
-          <button class='delete-button'>
-            <img class='delete-img' src='images/delete.svg'>
-            <p class='card-button-label'>DELETE</p>
-          </button>
-        </span>
-      </footer>
+    <footer>
+      <span class='urgent-button-container'>
+        <button class='urgent-button'>
+          <img class='urgent-img' src='images/urgent.svg'>
+        </button>
+        <p class='card-button-label'>URGENT</p>
+      </span>
+      <span class='card-delete-button-container'>
+        <button class='delete-button' disabled>
+        </button>
+        <p class='card-button-label'>DELETE</p>
+      </span>
+    </footer>
    </section>` + cards.innerHTML;
 };
 
-function showTasksFromArr(taskItems, task, taskItemsArr) {
+function showTasksFromArr(taskItems) {
   var cardTasks = '';
   for (var i = 0; i < taskItems.length; i++) {
     cardTasks += `
-    <div data-id='${taskItemsArr[i].dataset.id}' class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
+    <div data-id='${taskItems[i].id}' class='card-list-item'><img class='unchecked-box' src='images/checkbox.svg'/>
     <p class='task-on-card'>${taskItems[i].text}</p></div>`;
   }
   return cardTasks;
 };
-
 
 function updateTask(event) {
   for (var i = 0; i < toDoLists.length; i++) {
@@ -206,7 +229,6 @@ function updateTask(event) {
     taskContainer.classList.remove('completed-task');
   }
 };
-// (parseInt(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id)?
 
 function updateUrgent(event){
   for (var i = 0; i < toDoLists.length; i++) {
@@ -214,8 +236,6 @@ function updateUrgent(event){
       toDoLists[i].updateToDo();
     }
   }
-
-    // console.log(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id);
     if (event.target.classList.contains('urgent-img')) {
         event.target.closest('section').classList.replace('card', 'urgent-card');
         event.target.classList.replace('urgent-img', 'urgent-active-img');
