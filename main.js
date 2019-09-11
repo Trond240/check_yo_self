@@ -22,12 +22,23 @@ window.addEventListener('load', retrieveFromStorage);
 function retrieveFromStorage() {
   var parsedCards = JSON.parse(localStorage.getItem('stringifiedCards'));
   if (parsedCards.length) {
-   showParsedCards(parsedCards);
+    instantiateStorage(parsedCards);
+    showParsedCards(parsedCards);
   }
 };
 function showParsedCards(parsedCards) {
   for (var i = 0; i < parsedCards.length; i++) {
     showTaskCard(parsedCards[i].tasks, parsedCards[i]);
+  }
+};
+
+function instantiateStorage(parsedCards) {
+  for (var i = 0; i < parsedCards.length; i++) {
+    var toDoList = new ToDoList({id: parsedCards[i].id, tasks: parsedCards[i].tasks, title: parsedCards[i].title});
+    for (var j = 0; j < parsedCards[i].tasks.length; j++) {
+      var task = new Task({text: parsedCards[i].tasks[j].text, id: parsedCards[i].tasks[j].id});
+    }
+  toDoLists.push(toDoList);
   }
 };
 
@@ -219,7 +230,7 @@ function showTasksFromArr(taskItems) {
 
 function updateTask(event) {
   for (var i = 0; i < toDoLists.length; i++) {
-    if (parseInt(event.target.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
+    if (parseInt(event.target.parentElement.parentElement.nextElementSibling.children[1].children[0].dataset.id) === parseInt(toDoLists[i].id)) {
       for (var j = 0; j < toDoLists[i].tasks.length; j++) {
         if (event.target.parentNode.dataset.id === toDoLists[i].tasks[j].id) {
           toDoLists[i].tasks[j].updateCheck();
