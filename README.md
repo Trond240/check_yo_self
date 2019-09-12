@@ -26,7 +26,7 @@
 
 #### Our Product:
 ![productbrowser](https://i.imgur.com/nucJhqR.png)
-![productcomp](https://imgur.com/ulooL9P.png)
+![productcomp](https://imgur.com/WbP86Kt.png)
 
 ### Technologies Used
   * Atom
