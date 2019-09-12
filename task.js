@@ -6,7 +6,6 @@ class Task {
   }
 
   updateCheck() {
-    // console.log(9);
     this.checked = !this.checked;
   }
 
