@@ -1,7 +1,7 @@
 var aside = document.querySelector('aside');
+var asideAddTaskButton = document.querySelector('.aside-add-task-button');
 var asideAddTaskInput = document.querySelector('#aside-add-task-input');
 var asideAddTaskItem = document.querySelectorAll('.aside-task-list-item');
-var asideAddTaskButton = document.querySelector('.aside-add-task-button');
 var asideClearButton = document.querySelector('.aside-clear-button');
 var asideTask = document.querySelectorAll('.aside-task');
 var asideTaskDeleteButton = document.querySelector('.aside-task-delete-button');
@@ -10,56 +10,15 @@ var asideTitleInput = document.getElementById('aside-title-input');
 var blankMsg = document.querySelector('.blank-msg');
 var cards = document.querySelector('.cards');
 var count = 0;
+var fullPage = document.querySelector('.full-page');
 var main = document.querySelector('.cards');
 var makeTaskList = document.querySelector('.aside-make-button');
 var toDoLists = [];
-var fullPage = document.querySelector('.full-page');
 
 aside.addEventListener('click', asideEventListener);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
-fullPage.addEventListener('click', fullPageHandler);
 main.addEventListener('click', mainEventListener);
 window.addEventListener('load', retrieveFromStorage);
-
-function fullPageHandler() {
-  // if make --
-  // if checkbox --
-  // if delete
-  // if urgent
-}
-
-function retrieveFromStorage() {
-  var parsedInfo = JSON.parse(localStorage.getItem('stringifiedCards'));
-  var parsedCards = [];
-  parsedCards.push(parsedInfo);
-  if (parsedCards) {
-    instantiateStorage(parsedCards);
-    showParsedCards(toDoLists);
-  }
-};
-
-function showParsedCards(toDoLists) {
-  for (var i = 0; i < toDoLists.length; i++) {
-    showTaskCard(toDoLists[i].tasks, toDoLists[i]);
-  }
-};
-
-function instantiateStorage(parsedCards) {
-  for (var i = 0; i < parsedCards.length; i++) {
-    console.log(parsedCards[i].tasks)
-    var toDoList = new ToDoList({id: parsedCards[i].id, urgent: parsedCards[i].urgent, tasks: reinstantiateTasks(parsedCards[i].tasks), title: parsedCards[i].title});
-  toDoLists.push(toDoList);
-  }
-};
-
-function reinstantiateTasks(tasksArr) {
-  var array = [];
-  for (var i = 0; i < tasksArr.length; i++){
-    var task = new Task({text: tasksArr[i].text, checked: tasksArr[i].checked, id: tasksArr[i].id});
-    array.push(task);
-  }
-  return array;
-};
 
 function addTaskContainerToAside() {
   asideTaskList.innerHTML += `
@@ -124,6 +83,7 @@ function clickAsideMakeButton(event) {
     makeToDoList();
     clearAsideForm();
     disableMakeTaskListBtn();
+    sendToStorage();
   }
 };
 
@@ -148,7 +108,6 @@ function disableMakeTaskListBtn() {
 };
 
 function enableDeleteButton(event) {
-  // console.log(event);
   var listId = event.target.parentNode.parentNode.parentNode.dataset.id;
   var checkCount = 0;
   for (var i = 0; i < toDoLists.length; i++) {
@@ -173,6 +132,13 @@ function hideMsg() {
   event.preventDefault();
 };
 
+function instantiateStorage(parsedCards) {
+  for (var i = 0; i < parsedCards.length; i++) {
+    var toDoList = new ToDoList({id: parsedCards[i].id, urgent: parsedCards[i].urgent, tasks: reinstantiateTasks(parsedCards[i].tasks), title: parsedCards[i].title});
+  toDoLists.push(toDoList);
+  }
+};
+
 function makeToDoList() {
   var taskItemsArr = document.querySelectorAll('.aside-task-list-item');
   var taskItems = [];
@@ -186,36 +152,16 @@ function makeToDoList() {
   return toDoList;
 };
 
-
-function sendToStorage() {
-  for (var i = 0; i < toDoLists.length; i++) {
-    toDoLists[i].saveToStorage(toDoLists[i])
-  }
-};
-
-function updateUrgent(event) {
-  for (var i = 0; i < toDoLists.length; i++) {
-    if (parseInt(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
-      toDoLists[i].updateToDo();
-    }
-  }
-
-  if(event.target.classList.contains('urgent-img')) {
-    event.target.closest('section').classList.replace('card', 'urgent-card');
-    event.target.classList.replace('urgent-img', 'urgent-active-img');
-    event.target.src = 'images/urgent-active.svg';
-  } else if (event.target.classList.contains('urgent-active-img')) {
-    event.target.closest('section').classList.replace('urgent-card', 'card');
-    event.target.classList.replace('urgent-active-img', 'urgent-img');
-    event.target.src = 'images/urgent.svg';
-  }
-};
-
 function mainEventListener() {
   updateTask(event);
   deleteCard(event);
   updateUrgent(event);
   enableDeleteButton(event);
+};
+
+function sendToStorage() {
+    var stringifiedArr = JSON.stringify(toDoLists);
+    localStorage.setItem('stringifiedCards', stringifiedArr);
 };
 
 function showTaskCard(taskItems, toDoList) {
@@ -253,39 +199,81 @@ function showTasksFromArr(taskItems) {
   return cardTasks;
 };
 
-function updateTask(event) {
-  console.log(event);
+function reinstantiateTasks(tasksArr) {
+  var array = [];
+  for (var i = 0; i < tasksArr.length; i++){
+    var task = new Task({text: tasksArr[i].text, checked: tasksArr[i].checked, id: tasksArr[i].id});
+    array.push(task);
+  }
+  return array;
+};
+
+function retrieveFromStorage() {
+  var parsedCards = JSON.parse(localStorage.getItem('stringifiedCards'));
+  if (parsedCards) {
+    instantiateStorage(parsedCards);
+    showParsedCards(toDoLists);
+    updateUrgentOnLoad(event);
+    console.log(event);
+  }
+};
+
+function showParsedCards(toDoLists) {
   for (var i = 0; i < toDoLists.length; i++) {
-     console.log(234);
+    showTaskCard(toDoLists[i].tasks, toDoLists[i]);
+  }
+};
+
+function updateTask(event) {
+  for (var i = 0; i < toDoLists.length; i++) {
     if (parseInt(event.target.parentElement.parentElement.parentElement.dataset.id) === parseInt(toDoLists[i].id)) {
-      console.log(238);
       for (var j = 0; j < toDoLists[i].tasks.length; j++) {
-        console.log(240);
         if (event.target.parentNode.dataset.id === toDoLists[i].tasks[j].id) {
           toDoLists[i].tasks[j].updateCheck();
-          console.log(toDoLists[i].tasks[j]);
         }
       }
     }
-  }
+  };
+
   var taskContainer = event.target.parentNode;
-  if (event.target.classList.contains('unchecked-box')) {
+    if (event.target.classList.contains('unchecked-box')) {
     event.target.src = 'images/checkbox-active.svg';
     event.target.classList.replace('unchecked-box', 'checked-box');
     taskContainer.classList.add('completed-task');
-  } else if (event.target.classList.contains('checked-box')){
+    } else if (event.target.classList.contains('checked-box')){
     event.target.classList.replace('checked-box', 'unchecked-box');
     event.target.src = 'images/checkbox.svg';
     taskContainer.classList.remove('completed-task');
   }
 };
 
-function updateUrgent(event){
+function updateUrgent(event) {
   for (var i = 0; i < toDoLists.length; i++) {
     if (parseInt(event.target.parentNode.parentNode.parentNode.parentNode.dataset.id) === parseInt(toDoLists[i].id)) {
-      console.log(261);
       toDoLists[i].updateToDo();
     }
   }
+  if(event.target.classList.contains('urgent-img')) {
+    event.target.closest('section').classList.replace('card', 'urgent-card');
+    event.target.classList.replace('urgent-img', 'urgent-active-img');
+    event.target.src = 'images/urgent-active.svg';
+  } else if (event.target.classList.contains('urgent-active-img')) {
+    event.target.closest('section').classList.replace('urgent-card', 'card');
+    event.target.classList.replace('urgent-active-img', 'urgent-img');
+    event.target.src = 'images/urgent.svg';
+  }
+};
 
-  };
+function updateUrgentOnLoad(event) {
+  var urgentButtonPath = event.target.childNodes[1].children[1].children[1].children[1].children[0].children[2].children[0].children[0].children[0];
+  if(urgentButtonPath.classList.contains('urgent-img')) {
+    console.log('sleeeeep soon');
+    urgentButtonPath.closest('section').classList.replace('card', 'urgent-card');
+    urgentButtonPath.replace('urgent-img', 'urgent-active-img');
+    urgentButtonPath.src = 'images/urgent-active.svg';
+  } else if (urgentButtonPath.classList.contains('urgent-active-img')) {
+    urgentButtonPath.closest('section').classList.replace('urgent-card', 'card');
+    urgentButtonPath.replace('urgent-active-img', 'urgent-img');
+    urgentButtonPath.src = 'images/urgent.svg';
+  }
+};

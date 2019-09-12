@@ -8,5 +8,4 @@ class Task {
   updateCheck() {
     this.checked = !this.checked;
   }
-
 };
