@@ -17,21 +17,14 @@ var fullPage = document.querySelector('.full-page');
 
 aside.addEventListener('click', asideEventListener);
 asideTitleInput.addEventListener('input', disableMakeTaskListBtn);
-fullPage.addEventListener('click', fullPageHandler);
+// fullPage.addEventListener('click', sendToStorage);
 main.addEventListener('click', mainEventListener);
 window.addEventListener('load', retrieveFromStorage);
 
-function fullPageHandler() {
-  // if make --
-  // if checkbox --
-  // if delete
-  // if urgent
-}
 
 function retrieveFromStorage() {
-  var parsedInfo = JSON.parse(localStorage.getItem('stringifiedCards'));
-  var parsedCards = [];
-  parsedCards.push(parsedInfo);
+  var parsedCards = JSON.parse(localStorage.getItem('stringifiedCards'));
+  console.log(parsedCards);
   if (parsedCards) {
     instantiateStorage(parsedCards);
     showParsedCards(toDoLists);
@@ -48,6 +41,7 @@ function instantiateStorage(parsedCards) {
   for (var i = 0; i < parsedCards.length; i++) {
     console.log(parsedCards[i].tasks)
     var toDoList = new ToDoList({id: parsedCards[i].id, urgent: parsedCards[i].urgent, tasks: reinstantiateTasks(parsedCards[i].tasks), title: parsedCards[i].title});
+    console.log(parsedCards[i].tasks)
   toDoLists.push(toDoList);
   }
 };
@@ -124,6 +118,7 @@ function clickAsideMakeButton(event) {
     makeToDoList();
     clearAsideForm();
     disableMakeTaskListBtn();
+    sendToStorage();
   }
 };
 
@@ -188,9 +183,18 @@ function makeToDoList() {
 
 
 function sendToStorage() {
-  for (var i = 0; i < toDoLists.length; i++) {
-    toDoLists[i].saveToStorage(toDoLists[i])
-  }
+  // for (var i = 0; i < toDoLists.length; i++) {
+
+  // saveToStorage(toDoLists) {
+
+    console.log('start');
+    var stringifiedArr = JSON.stringify(toDoLists);
+    console.log(stringifiedArr);
+    localStorage.setItem('stringifiedCards', stringifiedArr);
+    console.log(localStorage);
+  // }
+    // toDoLists.saveToStorage(toDoLists[i])
+  // }
 };
 
 function updateUrgent(event) {

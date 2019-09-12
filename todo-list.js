@@ -6,14 +6,14 @@ class ToDoList {
     this.urgent = false;
   }
 
-  saveToStorage(toDoLists) {
-
-    console.log('start');
-    var stringifiedArr = JSON.stringify(toDoLists);
-    console.log(stringifiedArr);
-    localStorage.setItem('stringifiedCards', stringifiedArr);
-    console.log(localStorage);
-  }
+  // saveToStorage(toDoLists) {
+  //
+  //   console.log('start');
+  //   var stringifiedArr = JSON.stringify(toDoLists);
+  //   console.log(stringifiedArr);
+  //   localStorage.setItem('stringifiedCards', stringifiedArr);
+  //   console.log(localStorage);
+  // }
 
   deleteFromStorage() {
 
