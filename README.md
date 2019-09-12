@@ -15,10 +15,10 @@
 ### Ability to match/recreate a UI and create a great UX.
 
 ## Technologies Used
-
- *
- *
- *
+  
+  * ATOM
+  * DEV Tools
+  * Terminal
 
 ## Challenges
 
@@ -28,7 +28,13 @@
 
 ## WINS!!!!!!
  
- *
- *
- *
+ * Trisha- Manipulating Objects
+ * Kayla- Learned a lot!!!
+ * Trond-
+ 
+ ## Authors
+ 
+ * Trisha
+ * Kayla
+ * Trond
  
