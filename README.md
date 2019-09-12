@@ -1,12 +1,12 @@
 #### CHECK YO SELF
  
-### Learning Goals
+#### Learning Goals
  
 ## 1.Solidify ands Demonstrate understanding of:
 
-  - clean & organized css styles
-  - Dry JavaScripot
-  - LocalStorage to presist data
+  * clean & organized css styles
+  * Dry JavaScripot
+  * LocalStorage to presist data
  
 ## 2.Iterate through/filter DOM elements using (for) loops.
 
@@ -14,10 +14,22 @@
 
 ## 4.Ability to match/recreate a UI and create a great UX.
 
-### Technologies Used
 
-### Challenges
+## Technologies Used
 
-### WINS!!!!!!
+ *
+ *
+ *
 
+## Challenges
+
+ * Trisha- not being able to change the properties for 4 days.
+ * Kayala-
+ * Trond - Understanding hopw local storage actually works and how it is implemented.
+
+## WINS!!!!!!
+ 
+ *
+ *
+ *
  
