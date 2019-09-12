@@ -30,7 +30,7 @@
  
  * Trisha- Manipulating Objects
  * Kayla- Learned a lot!!!
- * Trond-
+ * Trond- I had to wonderful partners that helped me understand JavaScrit more than I did before.
  
  ## Authors
  
