@@ -20,13 +20,15 @@
   * Need to leave and come back? You can refresh the page and your tasks will still be there!
   
 ### The Comp Recreation
-#### The Comp:
+#### The Comp:  
+![browsercomp](https://i.imgur.com/7KtfuB7.jpg)
+![mobilecomp](https://i.imgur.com/fSbkqib.jpg)
 
 #### Our Product:
   
 ### Technologies Used
   * Atom
-  * DEV Tools (incliding debugger)
+  * DEV Tools (including debugger)
   * Terminal
 
 ### Challenges
