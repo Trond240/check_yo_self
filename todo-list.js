@@ -7,6 +7,7 @@ class ToDoList {
   }
 
   saveToStorage(toDoLists) {
+
     console.log('start');
     var stringifiedArr = JSON.stringify(toDoLists);
     console.log(stringifiedArr);

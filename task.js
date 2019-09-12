@@ -5,7 +5,7 @@ class Task {
     this.id = obj.id;
   }
 
-  updateCheck(obj) {
+  updateCheck() {
     this.checked = !this.checked;
   }
 
